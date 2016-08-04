@@ -1,0 +1,31 @@
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(180deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+div#indicator { 
+  position:absolute; 
+  text-align:center;
+  border-radius:50%;
+  border-right-color:transparent;
+  -webkit-animation:spin 1.2s linear infinite;
+  animation: spin 1.2s linear infinite;
+}
+
+div#indicatorContainer {
+  position:fixed; left:50%; top:50%;
+  z-index:9999;
+  -webkit-transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  -o-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+  opacity: 1.0;
+  filter:alpha(opacity=100);
+}
