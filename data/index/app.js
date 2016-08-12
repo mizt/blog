@@ -7,7 +7,7 @@ window.app = {
 	html:[
 		{"id":"wrapper"},[
 			{"class":"container"},
-			"####hello world"
+			"#hello world"
 		]
 	],
 	
