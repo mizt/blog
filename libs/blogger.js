@@ -23,7 +23,7 @@
 
 			var _total = 0;
 			var _loaded = 0;
-			var _load = function() { _total++; };
+			//var _load = function() { _total++; };
 			
 			var _base = "";
 			var _tag  = "";
@@ -38,10 +38,10 @@
 			};
 			
 			var _onload = function() {
-				this.onload=null;
+				_onload=null;
 			};
 			var _onerror = function() {
-				this.onerror=null;
+				_onerror=null;
 			};
 			//
 			
@@ -126,7 +126,7 @@
 			
 			var _setParagraph = function(result,text) {
 				
-				var data = this.parseText(text);
+				var data = _parseText(text);
 					
 				_setTagName(result,"p");   
 				data.unshift("p");				
@@ -181,10 +181,10 @@
 						//result = result.concat
 						Array.prototype.push.apply(
 							result,
-							this.parseTag(
+							_parseTag(
 								text.substring(0,matches[0].index),
-								this.SPAN_PARSE,
-								this.SPAN_MARKER
+								SPAN_PARSE,
+								SPAN_MARKER
 							)
 						);
 						
@@ -193,7 +193,7 @@
 						
 						Array.prototype.push.apply(
 							result,
-							this.parseLine(
+							_parseLine(
 								text.substring(0,range[0][0])
 							)
 						);
@@ -371,14 +371,14 @@
 					}
 					else if(first=="*") {
 						
-						this.setTagName(result,"li");
-						this.stack.push(_parseText(text.substring(1,text.length)));
+						_setTagName(result,"li");
+						_stack.push(_parseText(text.substring(1,text.length)));
 						
 					}
 					else if(first==">") {
 						
-						this.setTagName(result,"blockquote");
-						this.stack.push(_parseText(text.substring(1,text.length)));
+						_setTagName(result,"blockquote");
+						_stack.push(_parseText(text.substring(1,text.length)));
 						
 					}
 					else if(text.length>=4&&text[text.length-4]==".") {                      
@@ -386,7 +386,7 @@
 						
 						if(extension=="png"||extension=="jpg"||extension=="gif"||extension=="svg") {
 						
-							this.setTagName(result,"img");
+							_setTagName(result,"img");
 							
 							var src = text;
 							
@@ -406,8 +406,8 @@
 													
 							result.push(crel("img",{
 								src:src,
-								onload :"window.blogger._load(); window.blogger._onload.call(this)",
-								onerror:"window.blogger._load(); window.blogger._onerror.call(this)",
+								onload :"window.blogger.loadImage(); window.blogger.onload.call(this)",
+								onerror:"window.blogger.loadImage(); window.blogger.onerror.call(this)",
 							})); 
 						
 						}
@@ -420,7 +420,7 @@
 					}
 					else if(first=="`"&&last=="`") {
 					
-						this.setTagName(result,"pre");
+						_setTagName(result,"pre");
 						result.push(crel("pre",text.substring(1,text.length-1)));
 					
 					}
@@ -482,6 +482,11 @@
 			
 			_public.add = function(key,value) { _public[key] = value; }
 			
+			_public.loadImage = function() {  _loaded++; }
+			
+			_public.onload = function()  { _onload.call(this); }
+			_public.onerror = function() { _onerror.call(this); }
+			
 			_public.exec = function(arr) {
 								
 				if(window.settings) {
@@ -506,7 +511,7 @@
 					if(Array.isArray(arr[k])) {
 					
 						isStack = false;
-						result.push(this.exec(arr[k]));      
+						result.push(_public.exec(arr[k]));      
 					
 					}
 					else if(k==0&&tags[arr[k]]) {
@@ -572,8 +577,8 @@
 						
 			return initalize.bind(_public)();
 			
-		})(arguments[0]));
+		})());
 		
-	})(arguments[0]);
+	})();
 
 })();

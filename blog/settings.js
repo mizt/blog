@@ -16,8 +16,10 @@ window.settings = {
 	// new Image().onload 
 	onload:function() {
 				
+		var shift = (window.devicePixelRatio&&window.devicePixelRatio>1.5)?1:0;
+						
 		this.style.display = "block";
-		this.style.maxWidth = this.width+"px" 
+		this.style.maxWidth = (this.width>>shift)+"px" 
 		this.style.width = "100%";        
 		this.onload=null;
 		

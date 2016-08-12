@@ -88,7 +88,7 @@
 	};
 	
 	load("./libs/com/getskeleton/normalize.css",function() {
-		load("./libs/com/getskeleton/skeleton.css",function() {
+		//load("./libs/com/getskeleton/skeleton.css",function() {
 			load("./libs/blogger.js",function() {	
 				
 				window.blogger.add("load",load);
@@ -114,6 +114,6 @@
 					}
 				});				
 			});
-		});
+		//});
 	});
 })();
