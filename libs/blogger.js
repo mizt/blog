@@ -393,8 +393,10 @@
 				result = [];
 		 
 				for(var k=0; k<arr.length; k++) {
-					
+																				
 					var text = arr[k];
+					
+					//console.log(text);
 					
 					var first = text[0];							
 					var last = text[text.length-1];
@@ -517,6 +519,7 @@
 				
 			};
 		
+			
 			var _public = _instance.prototype;
 			
 			_public.isPreload = function() {

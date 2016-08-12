@@ -4,11 +4,12 @@
   font-family:"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","游ゴシック","Yu Gothic","メイリオ",Meiryo,Osaka,sans-serif;
   text-rendering:optimizeSpeed;
   text-align:justify;
-    letter-spacing:0; }
+  letter-spacing:0; }
 
 html {
   font-size:15px; 
-  color:#444; }
+  line-height:25px; 
+}
 
 ::selection {
     background:rgba(0,0,0,0.1); }
@@ -26,7 +27,7 @@ img::-moz-selection, iframe::-moz-selection {
 .container {
   position: relative;
   margin: 0 auto;
-  padding: 15px 0 10px 0;
+  padding: 15px 0 15px 0;
   width: 85%;
   max-width: 960px; }
 
@@ -62,11 +63,10 @@ h1 {
   line-height:32px; }  
   
 h2 { 
-  font-size:18px; 
-  line-height:24px; }
+  font-size:20px; 
+  line-height:26px; }
     
 p {
-  line-height:25px; 
   color:#444; }
 
 h1, h2, p, ul, blockquote, img, pre, img, table, .iframeWrapper {
@@ -122,13 +122,18 @@ pre {
   color:#FFF;
   font-family: 'Courier New', Courier, Monaco, monospace;
   tab-size:2;
+}
+
+p, pre {
   white-space: pre;          
   white-space: pre-wrap;     
   white-space: -pre-wrap;    
   white-space: -o-pre-wrap;  
   white-space: -moz-pre-wrap;
   white-space: -hp-pre-wrap; 
-  word-wrap: break-word; }
+  word-wrap: break-word; 
+  word-break:break-all; }
+
 
 @media (max-width: 550px) {
    
