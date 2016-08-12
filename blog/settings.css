@@ -6,6 +6,17 @@
 html {
   font-size:15px; 
   color:#444; }
+
+::selection {
+    background:rgba(0,0,0,0.1); }
+::-moz-selection {
+    background:rgba(0,0,0,0.1); }
+    
+img::selection, iframe::selection {
+    background:rgba(0,0,0,0); }
+img::-moz-selection, iframe::-moz-selection {
+    background:rgba(0,0,0,0); }
+
   
 .container {
   position: relative;
@@ -91,9 +102,6 @@ table {
 tr, th, td {
   margin:0; }  
   
-.blockquoteWrapper {
-  margin:15px 0; }
-
 blockquote {
   border-left:2px solid #E1E1E1;
   padding:12px 15px; }
@@ -101,19 +109,20 @@ blockquote {
 blockquote p {
   margin-bottom:0; }
 
-blockquote p:last-child {
+blockquote:last-child a {
+  display:block;
   margin-top: 15px; }
  
 pre {
-  font-size:15px;
+  font-size:16px;
   border-radius:2px;
-  padding:0.5em 1em;
+  padding:12px 15px;
   background-color:#000;
   color:#FFF;
   font-family: 'Courier New', Courier, Monaco, monospace;
+  tab-size:2;
   white-space: pre;          
   white-space: pre-wrap;     
-  white-space: pre-line;     
   white-space: -pre-wrap;    
   white-space: -o-pre-wrap;  
   white-space: -moz-pre-wrap;

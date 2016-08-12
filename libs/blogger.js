@@ -88,8 +88,14 @@
 						
 							var blockquote = crel("blockquote");
 							for(var k=0; k<_stack.length; k++) {
-								_stack[k].unshift("p");  
-								crel(blockquote,crel.apply({},_stack[k]));
+								//_stack[k].unshift("p");  
+								//crel(blockquote,crel.apply({},_stack[k]));
+								
+								crel(blockquote,_stack[k]);
+								
+								if(k!=_stack.length-1) crel(blockquote,crel("span",{class:"br"}));
+								
+								
 							}
 								
 							result.push(blockquote);
@@ -517,7 +523,9 @@
 					else if(k==0&&tags[arr[k]]) {
 						
 						isStack = false;
-						result.push(arr[k]);
+						//result.push(arr[k]);
+						result.push(crel.apply({},arr));
+						break;
 
 					}
 					else if(Object.isObject(arr[k])) {
