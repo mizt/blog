@@ -14,7 +14,7 @@
 			
 			var A_PARSE = (/\(http(.*?):(.*?),|\(.{0,2}\/(.*?),/g);
 			var A_MARKER = ["(",")"];
-			var SPAN_PARSE = (/\[#(.*?),|\[.(.*?),/g);
+			var SPAN_PARSE = (/\[#(.*?),|\[.(.*?),|\[div,.(.*?),|\[div,.(#*?),/g);
 			var SPAN_MARKER = ["[","]"];
 			
 			var _instance=function(){};
@@ -43,7 +43,41 @@
 			var _onerror = function() {
 				_onerror=null;
 			};
-			//
+			
+			
+			var _getAttributes = function(types) {
+				
+				var classNmae = "";
+				 	var id = "";
+					
+				 	for(var k=0; k<types.length; k++) {
+						
+						if(types[k][0]==".") {
+							
+							if(classNmae.length==0) {
+								classNmae = types[k].substring(1,types[k].length);									
+							} 
+							else {
+								classNmae += " "+types[k].substring(1,types[k].length);
+							}
+																
+						}
+						else if(types[k][0]=="#") {
+							
+							if(id.length==0) {
+								
+								id = types[k].substring(1,types[k].length);
+
+							} 
+						}							
+					}
+					
+					var type = {};
+					if(classNmae.length>0) type["class"] = classNmae;
+					if(id.length>0) type["id"] = id;
+					
+					return type;
+			};
 			
 			var _reset = function() {
 				
@@ -229,61 +263,67 @@
 							 }
 							 else if(option[0]=="[") {
 							 						
-								var types = tmp.substring(0,comma).split(" ");
-															
-							 	var classNmae = "";
-							 	var id = "";
+							
+
 								
-							 	for(var k=0; k<types.length; k++) {
+								if(tmp.indexOf("div,")==0) {
 									
-									if(types[k][0]==".") {
+									
+									
+									var attributes = tmp.substring(comma+1,range[n][1]);
+									
+									if(attributes.length>1) {
 										
-										if(classNmae.length==0) {
-											classNmae = types[k].substring(1,types[k].length);									
-										} 
-										else {
-											classNmae += " "+types[k].substring(1,types[k].length);
-										}
-																			
-									}
-									else if(types[k][0]=="#") {
+										var types = attributes.split(" ");
 										
-										if(id.length==0) {
+										result.push(crel("div",_getAttributes(types)));
 											
-											id = types[k].substring(1,types[k].length);
-
-										} 
-									}							
-								}
-								
-								var type = {};
-								if(classNmae.length>0) type["class"] = classNmae;
-								if(id.length>0) type["id"] = id;
-
-								if(tmp[0]=="#"||tmp[0]==".") {
-																												
-									var data = _parseLine(tmp.substring(comma+1,tmp.length));
-																					
-									if(data.length==0) {    
-										result.push(crel("span",type,tmp.substring(comma+1,tmp.length)));                    
 									}
 									else {
-										data.unshift("span",type);
-										result.push(crel.apply({},data));
-									}
-																			
-								 }
-								 else { // span じゃなかった場合			
+									
+										tmp = text.substring(range[n][0],range[n][1]+1);
+										var data = _parseLine(tmp);
+																						
+										if(data.length==0) {    
+											result.push(crel("span",tmp));                    
+										}
+										else {
+											data.unshift("span");
+											result.push(crel.apply({},data));
+										}
 										
-									tmp = text.substring(range[n][0],range[n][1]+1);
-									var data = _parseLine(tmp);
-																					
-									if(data.length==0) {    
-										result.push(crel("span",tmp));                    
 									}
-									else {
-										data.unshift("span");
-										result.push(crel.apply({},data));
+								}
+								else {
+														
+									var types = tmp.substring(0,comma).split(" ");
+									var type = _getAttributes(types);
+
+									if(tmp[0]=="#"||tmp[0]==".") {
+																													
+										var data = _parseLine(tmp.substring(comma+1,tmp.length));
+																						
+										if(data.length==0) {    
+											result.push(crel("span",type,tmp.substring(comma+1,tmp.length)));                    
+										}
+										else {
+											data.unshift("span",type);
+											result.push(crel.apply({},data));
+										}
+																				
+									 }
+									 else { // span じゃなかった場合			
+											
+										tmp = text.substring(range[n][0],range[n][1]+1);
+										var data = _parseLine(tmp);
+																						
+										if(data.length==0) {    
+											result.push(crel("span",tmp));                    
+										}
+										else {
+											data.unshift("span");
+											result.push(crel.apply({},data));
+										}
 									}                    
 								}
 							}
