@@ -16,7 +16,8 @@
 			var A_MARKER = ["(",")"];
 			var SPAN_PARSE = (/\[#(.*?),|\[.(.*?),|\[div,.(.*?),|\[div,.(#*?),/g);
 			var SPAN_MARKER = ["[","]"];
-			
+			var ASCII = (/[\x21-\x7E〜]+|、/g);
+
 			var _instance=function(){};
 			
 			var _stack = [];
@@ -122,6 +123,7 @@
 						
 							var blockquote = crel("blockquote");
 							for(var k=0; k<_stack.length; k++) {
+								
 								//_stack[k].unshift("p");  
 								//crel(blockquote,crel.apply({},_stack[k]));
 								
@@ -169,21 +171,124 @@
 				var data = _parseText(text);
 					
 				_setTagName(result,"p");   
-				data.unshift("p");				
+				
+				for(var k=0; k<data.length; k++) {
+					
+					var tmp = [];
+					
+					if(typeof(data[k])==="string") {
+						
+						var arr = _splitText(data[k]);
+																		
+						for(var n=0; n<arr.length; n++) {
+													
+							if(arr[n]=="、") {
+								tmp.push(crel("span",{class:"punctuation"},arr[n]));
+							}
+							else {
+								tmp.push(crel("span",arr[n]));
+							}
+						}
+						
+						data[k] = tmp;
+					}
+					else if(Array.isArray(data[k])) {
+												
+						for(var n=0; n<data[k].length; n++) {
+							
+							if(typeof(data[k][n])==="string") { 
+								
+								var arr = _splitText(data[k][n]);
+																
+								for(var m=0; m<arr.length; m++) {
+								
+									if(arr[n]=="、") {
+										tmp.push(crel("span",{class:"punctuation"},arr[m]));
+									}
+									else {
+										tmp.push(crel("span",arr[m]));
+									}
+								}
+								
+							}
+							else {
+								
+								tmp.push(data[k][n]);
+							}
+							
+						}
+						
+						data[k] = tmp;
+						
+					}
+					
+					//console.log(data[k]);
+					
+				}
+				
+				
+				data.unshift("p");		
+										
 				result.push(crel.apply({},data));
 					
 			};
+			
+			var _splitText = function(text) {
+				
+				
+				var matches = [];
+
+				var match;
+				while((match = ASCII.exec(text))!=null) {		
+					matches.push({
+						index:match.index,length:match[0].length,match:match[0]
+					});		
+				};
+
+				var result  = [];
+				
+				
+				if(matches.length>=1) {
+
+					var head = 0
+
+					for(var k=0; k<matches.length; k++) {
+						
+					
+						var begin  = matches[k].index;
+						var length = matches[k].length;
+							
+						if(head!=begin) result.push(text.substr(head,(begin-head)));
+								
+						result.push(text.substr(begin,length));
+							
+						// last
+						if(k==matches.length-1&&text.length>begin+length) {
+								
+							result.push(text.substr(begin+length,text.length-(begin+length)));
+						}
+							
+						head = begin+length;
+
+					}
+				}
+				
+				return (result.length)?result:[text];
+			
+			};
+			
 			
 			var _parseTag = function(text,regex,option) {
 							 
 				var result  = [];
 				var matches = [];
-
+				
+				var match;
 				while((match = regex.exec(text))!=null) {		
 					matches.push({
 						index:match.index,match:match[0]
 					});		
-				}
+				};
 											
 				var range = [];
 				if(matches.length>=1) {
@@ -217,6 +322,8 @@
 						
 					// 検索結果より前を考慮
 					if(option[0]=="("&&matches[0].index!==0) {
+								
+							
 													
 						//result = result.concat
 						Array.prototype.push.apply(
@@ -227,6 +334,7 @@
 								SPAN_MARKER
 							)
 						);
+						
 						
 					}
 					else if(option[0]=="["&&range[0][0]!==0) {
@@ -242,6 +350,8 @@
 				 
 					//
 					 
+
+
 					for(var n=0; n<range.length; n++) {
 
 						var tmp = text.substring(range[n][0]+1,range[n][1]);
@@ -256,8 +366,10 @@
 								 	SPAN_PARSE,
 								 	SPAN_MARKER
 								);
+								
 									
 							 	data.unshift("a",{href:tmp.substring(0,comma),target:_target});
+							
 							 	result.push(crel.apply({},data));
 									
 							 }
@@ -360,7 +472,7 @@
 				 else { // range.length==0
 					
 					if(option[0]=="(") {
-											
+										
 						return _parseTag(
 							text,
 							SPAN_PARSE,
@@ -370,16 +482,20 @@
 					}
 					else {
 						
-						return _parseLine(text);          
+						var data = _parseLine(text);
+						
+						return data;          
 														
 					}
 				} 
+				
+				//console.log(result);
 				
 				return result;
 			};
 			
 			var _parseText = function(text) {
-																							
+																					
 				return _parseTag(
 					text,
 					A_PARSE,

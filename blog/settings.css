@@ -1,25 +1,30 @@
+
 * {
   margin:0; 
   padding:0;
   font-family:"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","游ゴシック","Yu Gothic","メイリオ",Meiryo,Osaka,sans-serif;
   text-rendering:optimizeSpeed;
-  text-align:justify;
-  letter-spacing:0; }
-
-html {
-  font-size:15px; 
-  line-height:25px; 
-}
+  letter-spacing:0.25px;
+  font-kerning:none; }
 
 ::selection {
     background:rgba(0,0,0,0.1); }
 ::-moz-selection {
     background:rgba(0,0,0,0.1); }
+
+pre::selection {
+  background:rgba(255,255,255,0.25); }
+pre::-moz-selection {
+  background:rgba(255,255,255,0.25); }
+
     
 img::selection, iframe::selection {
   background:rgba(0,0,0,0); }
 img::-moz-selection, iframe::-moz-selection {
   background:rgba(0,0,0,0); }
+
+
+
 
 .strikethrough {
   text-decoration:line-through; } 
@@ -27,7 +32,7 @@ img::-moz-selection, iframe::-moz-selection {
 .container {
   position: relative;
   margin: 0 auto;
-  padding: 15px 0 15px 0;
+  padding: 29px 0 19px 0;
   width: 85%;
   max-width: 960px; }
 
@@ -54,27 +59,56 @@ iframe {
   top :0; left:0;
   width :100%; height:100%; }
     
-h1, h2 {
-  color:#000;
-  font-weight:300; }
+
   
 h1 {
+  color:#242424;
+  font-weight:600;
   font-size:26px;
-  line-height:32px; }  
+  line-height:36px; 
+  margin-top:-5px;
+  margin-bottom:26px; }  
   
-h2 { 
-  font-size:20px; 
-  line-height:26px; }
-    
-p {
-  color:#444; }
+h2 {
+  color:#242424;
+  font-weight:600;
+  font-size:18px;
+  line-height:26px; 
+  margin-top:-4px;
+  margin-bottom:16px; }  
+  
 
-h1, h2, p, ul, blockquote, img, pre, img, table, .iframeWrapper {
+h3 { 
+  color:#333;
+  font-style:italic;
+  font-weight:normal;
+  
+  font-size:12px; 
+  line-height:20px;
+  margin-top:-3px;
+  margin-bottom:17px; }  
+  
+
+p {
+  font-size:15px;
+  line-height:25px;
+  margin-top:-5px;
+  margin-bottom:15px;
+  color:#444;
+  text-align:justify; 
+  word-wrap: break-word; 
+  word-break:break-all; }
+
+ul, blockquote, img, pre, img, table, .iframeWrapper {
     margin-bottom: 20px; }
           
 a {
   text-decoration:none;
   color: #4444F9; }
+
+a:hover {
+    text-decoration:none;
+    color: #4e24b1; }  
       
 th, td {
   padding: 15px 15px;
@@ -115,11 +149,11 @@ blockquote:last-child a {
   margin-top: 15px; }
  
 pre {
-  font-size:16px;
+  font-size:14px;
   border-radius:2px;
-  padding:12px 15px;
-  background-color:#000;
-  color:#FFF;
+  padding:10px 12px;
+  background-color:#1d1e39;
+  color:#FEFEFE;
   font-family: 'Courier New', Courier, Monaco, monospace;
   tab-size:2;
 }
@@ -139,7 +173,15 @@ p, pre {
    
   h1 {
     font-size:22px;
-    line-height:28px; }
+    line-height:32px; 
+    margin-top:-5px;
+    margin-bottom:25px; }    
+
+  p {
+    font-size:14px;
+    line-height:22px;
+    margin-top:-4px;
+    margin-bottom:16px; }  
        
   table, tr, td {
     display:block; }
@@ -157,3 +199,18 @@ p, pre {
     padding-right:15px; }
   
 }
+
+span + a, a + span {
+  margin-right:2px;
+}
+
+span {
+  margin-right:2px;
+}
+
+
+span.punctuation {
+  letter-spacing:-6px;
+}
+
+
