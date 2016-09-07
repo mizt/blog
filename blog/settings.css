@@ -169,6 +169,21 @@ p, pre {
   word-break:break-all; }
 
 
+  span + a, a + span {
+    margin-right:2px;
+  }
+
+  span {
+    margin-right:2px;
+  }
+
+  span.punctuation {
+    letter-spacing:-5px;
+    margin-left:-2px;
+    margin-right:0px;
+  }
+
+
 @media (max-width: 550px) {
    
   h1 {
@@ -182,6 +197,9 @@ p, pre {
     line-height:22px;
     margin-top:-4px;
     margin-bottom:16px; }  
+    
+  span.punctuation {
+    letter-spacing:-4px; }
        
   table, tr, td {
     display:block; }
@@ -200,17 +218,5 @@ p, pre {
   
 }
 
-span + a, a + span {
-  margin-right:2px;
-}
-
-span {
-  margin-right:2px;
-}
-
-
-span.punctuation {
-  letter-spacing:-6px;
-}
 
 
