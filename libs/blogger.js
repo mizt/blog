@@ -16,7 +16,7 @@
 			var A_MARKER = ["(",")"];
 			var SPAN_PARSE = (/\[#(.*?),|\[.(.*?),|\[div,.(.*?),|\[div,.(#*?),/g);
 			var SPAN_MARKER = ["[","]"];
-			var ASCII = (/[\x21-\x7E〜]+|、/g);
+			var ASCII = (/[\x20-\x7E〜]+|、|。|「|」|・/g);
 
 			var _instance=function(){};
 			
@@ -182,8 +182,17 @@
 																		
 						for(var n=0; n<arr.length; n++) {
 													
-							if(arr[n]=="、") {
+							if(arr[n]=="、"||arr[n]=="。") {
 								tmp.push(crel("span",{class:"punctuation"},arr[n]));
+							}
+							else if(arr[n]=="」") {
+								tmp.push(crel("span",{class:"punctuation_right"},arr[n]));
+							}
+							else if(arr[n]=="「") {
+								tmp.push(crel("span",{class:"punctuation_left"},arr[n]));
+							}
+							else if(arr[n]=="・") {
+								tmp.push(crel("span",{class:"punctuation_center"},arr[n]));
 							}
 							else {
 								tmp.push(crel("span",arr[n]));
@@ -202,8 +211,17 @@
 																
 								for(var m=0; m<arr.length; m++) {
 								
-									if(arr[n]=="、") {
+									if(arr[m]=="、"||arr[m]=="。") {
 										tmp.push(crel("span",{class:"punctuation"},arr[m]));
+									}
+									else if(arr[m]=="」") {
+										tmp.push(crel("span",{class:"punctuation_right"},arr[m]));
+									}
+									else if(arr[m]=="「") {
+										tmp.push(crel("span",{class:"punctuation_left"},arr[m]));
+									}
+									else if(arr[m]=="・") {
+										tmp.push(crel("span",{class:"punctuation_center"},arr[m]));
 									}
 									else {
 										tmp.push(crel("span",arr[m]));
