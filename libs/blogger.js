@@ -16,7 +16,7 @@
 			var A_MARKER = ["(",")"];
 			var SPAN_PARSE = (/\[#(.*?),|\[.(.*?),|\[div,.(.*?),|\[div,.(#*?),/g);
 			var SPAN_MARKER = ["[","]"];
-			var ASCII = (/[\x20-\x7E〜]+|、|。|「|」|・/g);
+			var ASCII = (/[\x20-\x7E〜]+|、|。|「|」|）|（|・/g);
 
 			var _instance=function(){};
 			
@@ -172,77 +172,8 @@
 					
 				_setTagName(result,"p");   
 				
-				for(var k=0; k<data.length; k++) {
-					
-					var tmp = [];
-					
-					if(typeof(data[k])==="string") {
-						
-						var arr = _splitText(data[k]);
-																		
-						for(var n=0; n<arr.length; n++) {
-													
-							if(arr[n]=="、"||arr[n]=="。") {
-								tmp.push(crel("span",{class:"punctuation"},arr[n]));
-							}
-							else if(arr[n]=="」") {
-								tmp.push(crel("span",{class:"punctuation_right"},arr[n]));
-							}
-							else if(arr[n]=="「") {
-								tmp.push(crel("span",{class:"punctuation_left"},arr[n]));
-							}
-							else if(arr[n]=="・") {
-								tmp.push(crel("span",{class:"punctuation_center"},arr[n]));
-							}
-							else {
-								tmp.push(crel("span",arr[n]));
-							}
-						}
-						
-						data[k] = tmp;
-					}
-					else if(Array.isArray(data[k])) {
-												
-						for(var n=0; n<data[k].length; n++) {
-							
-							if(typeof(data[k][n])==="string") { 
-								
-								var arr = _splitText(data[k][n]);
-																
-								for(var m=0; m<arr.length; m++) {
-								
-									if(arr[m]=="、"||arr[m]=="。") {
-										tmp.push(crel("span",{class:"punctuation"},arr[m]));
-									}
-									else if(arr[m]=="」") {
-										tmp.push(crel("span",{class:"punctuation_right"},arr[m]));
-									}
-									else if(arr[m]=="「") {
-										tmp.push(crel("span",{class:"punctuation_left"},arr[m]));
-									}
-									else if(arr[m]=="・") {
-										tmp.push(crel("span",{class:"punctuation_center"},arr[m]));
-									}
-									else {
-										tmp.push(crel("span",arr[m]));
-									}
-								}
-								
-							}
-							else {
-								
-								tmp.push(data[k][n]);
-							}
-							
-						}
-						
-						data[k] = tmp;
-						
-					}
-					
-					//console.log(data[k]);
-					
-				}
+				
+				data = _addClass(data);
 				
 				
 				data.unshift("p");		
@@ -522,6 +453,83 @@
 				
 			};
 			
+			var _addClass = function(data) {
+				
+				for(var k=0; k<data.length; k++) {
+					
+					var tmp = [];
+					
+					if(typeof(data[k])==="string") {
+						
+						var arr = _splitText(data[k]);
+																		
+						for(var n=0; n<arr.length; n++) {
+													
+							if(arr[n]=="、"||arr[n]=="。") {
+								tmp.push(crel("span",{class:"punctuation"},arr[n]));
+							}
+							else if(arr[n]=="」"||arr[n]=="）") {
+								tmp.push(crel("span",{class:"punctuation_right"},arr[n]));
+							}
+							else if(arr[n]=="「"||arr[n]=="（") {
+								tmp.push(crel("span",{class:"punctuation_left"},arr[n]));
+							}
+							else if(arr[n]=="・") {
+								tmp.push(crel("span",{class:"punctuation_center"},arr[n]));
+							}
+							else {
+								tmp.push(crel("span",arr[n]));
+							}
+						}
+						
+						data[k] = tmp;
+					}
+					else if(Array.isArray(data[k])) {
+												
+						for(var n=0; n<data[k].length; n++) {
+							
+							if(typeof(data[k][n])==="string") { 
+								
+								var arr = _splitText(data[k][n]);
+																
+								for(var m=0; m<arr.length; m++) {
+								
+									if(arr[m]=="、"||arr[m]=="。") {
+										tmp.push(crel("span",{class:"punctuation"},arr[m]));
+									}
+									else if(arr[m]=="」"||arr[m]=="）") {
+										tmp.push(crel("span",{class:"punctuation_right"},arr[m]));
+									}
+									else if(arr[m]=="「"||arr[m]=="（") {
+										tmp.push(crel("span",{class:"punctuation_left"},arr[m]));
+									}
+									else if(arr[m]=="・") {
+										tmp.push(crel("span",{class:"punctuation_center"},arr[m]));
+									}
+									else {
+										tmp.push(crel("span",arr[m]));
+									}
+								}
+								
+							}
+							else {
+								
+								tmp.push(data[k][n]);
+							}
+							
+						}
+						
+						data[k] = tmp;
+						
+					}
+					
+					//console.log(data[k]);
+					
+				}
+				
+				return data;
+			} 
+			
 			var _parse = function(arr) {
 					
 				result = [];
@@ -545,7 +553,11 @@
 																
 						_setTagName(result,"h"+h);
 													
-						var data = _parseText(text.substring(h,text.length))
+						var data = _parseText(text.substring(h,text.length));
+						
+						data = _addClass(data);
+						
+						
 						data.unshift("h"+((h>=6)?6:h));
 													
 						result.push(crel.apply({},data))
