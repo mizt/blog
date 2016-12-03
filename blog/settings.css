@@ -32,7 +32,7 @@ img::-moz-selection, iframe::-moz-selection {
 .container {
   position: relative;
   margin: 0 auto;
-  padding: 29px 0 19px 0;
+  padding: 29px 0 29px 0;
   width: 85%;
   max-width: 960px; }
 
@@ -76,9 +76,17 @@ h2 {
   line-height:26px; 
   margin-top:-4px;
   margin-bottom:16px; }  
-  
 
 h3 { 
+  color:#242424;
+  font-weight:600;
+  font-size:15px;
+  line-height:25px;
+  margin-top:-5px;
+  margin-bottom:15px;
+  color:#444; }
+
+h4 { 
   color:#333;
   font-style:italic;
   font-weight:normal;
@@ -164,7 +172,7 @@ p, pre {
   white-space: -pre-wrap;    
   white-space: -o-pre-wrap;  
   white-space: -moz-pre-wrap;
-  white-space: -hp-pre-wrap; 
+  white-space: -hp-pre-wrap;
   word-wrap: break-word; 
   word-break:break-all; }
 
