@@ -27,7 +27,7 @@ console.log("app.js");
 				["audio",{"src":base+"a2.wav","controls":{}}],
 				description,
 				"サンプリングテーブルの使用のように、正弦波の近似には幾つかの方法がある。他に有名なものとして(https://en.wikipedia.org/wiki/Taylor_series,テイラー級数)による近似がある。",
-				["p",{"style":"font-weight:bold;"},"f-f^3/3!+f^5/5!-f^7/7!+f^9/9!+..f^n/n!"],
+				["p",{"style":"font-weight:bold;"},"f-f^3/3!+f^5/5!-f^7/7!+f^9/9!-..+f^n/n!"],
 				"とあらわせられる。次数によって有効範囲が変わる。\n-PI〜PIの有効範囲で言えば9次でよいだろう。(たぶん)\n他者の実装を見ると、有効範囲の問題か、8次の余弦のテイラー級数をつかっているが、フェーズをずらせばよいと思っているが、何か理由があるのだろうか。実装は以下のようになる。",
 				"`double f = (phase+shift)*TWO_PI;\nif(f<=0) f+=TWO_PI;\nelse if(f>=PI) f-=TWO_PI;\ndouble ff = f*f;\ndouble out =f*(1.-0.00000275573*ff*(60480.-ff*(3024.-ff*(72.-ff))));`",
 				["audio",{"src":base+"a3.wav","controls":{}}],
