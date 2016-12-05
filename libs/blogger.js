@@ -478,6 +478,8 @@
 								tmp.push(crel("span",{class:"punctuation_center"},arr[n]));
 							}
 							else {
+								//if(ASCII.exec(arr[n])) 
+								tmp.push(crel("span",""));
 								tmp.push(crel("span",arr[n]));
 							}
 						}
@@ -507,6 +509,8 @@
 										tmp.push(crel("span",{class:"punctuation_center"},arr[m]));
 									}
 									else {
+										//if(ASCII.exec(arr[m])) 
+										tmp.push(crel("span","")); 
 										tmp.push(crel("span",arr[m]));
 									}
 								}
