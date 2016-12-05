@@ -36,9 +36,56 @@ window.settings = {
 
 	ready:function() {
 		
+		
 		document.body.style.overflow = "auto";
 		document.getElementById("wrapper").style.opacity = 1.0;
 		
-	}
-	
+		// Chrome has a bug in  text-align:Justify
+		var ua = navigator.userAgent;
+		if(ua.indexOf("AppleWebKit")>=0&&ua.indexOf("Edge")==-1) {
+					
+			var checkOverJustify = function() {
+
+				var w = document.querySelector(".container").offsetWidth;
+				var s = document.querySelectorAll("span")
+
+				var isOver = false;
+				for(var n=0; n<s.length; n++) if(s[n].offsetWidth>w+4) { isOver = true; }
+
+				if(isOver) {
+					
+					console.log("resize");
+					
+					if(w==960) {
+						document.querySelector(".container").style.maxWidth = (960-2)+"%";
+					}
+					else {
+						document.querySelector(".container").style.width = "84%";
+					}
+				}
+			}
+
+			var tid=0;
+			 
+			window.addEventListener('resize',function (event) {
+				if (!tid) {
+					clearTimeout(tid);
+					tid=0;
+				}
+				
+				tid = setTimeout(function () {		
+					var container = document.querySelector(".container");
+					container.style.maxWidth = 960;
+					container.style.width = "85%";
+					setTimeout(function() {
+						checkOverJustify();
+					},33);
+				},33);
+			});
+
+			setTimeout(function() {
+				checkOverJustify();
+			},33);
+		}
+	}	
 };
