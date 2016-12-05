@@ -58,9 +58,7 @@ iframe {
   position: absolute;
   top :0; left:0;
   width :100%; height:100%; }
-    
-
-  
+   
 h1 {
   color:#242424;
   font-weight:600;
@@ -104,8 +102,9 @@ p {
   margin-bottom:15px;
   color:#444;
   text-align:justify; 
-  word-wrap: break-word; 
-  word-break:break-all; }
+  word-break: normal;
+  word-wrap: break-word;
+}
 
 ul, blockquote, img, pre, img, table, .iframeWrapper {
     margin-bottom: 20px; }
