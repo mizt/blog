@@ -28,7 +28,7 @@ window.app = {
 		"図は「cycle~ 1046」「line~」「*~」「comb~ 512 256 0 0.3 0.6」から「sfrecord~ 4」の結線して録音した.aifをAudacityで開いたものである。Audacityでは.aifはマルチトラックを開けるようだ。(.wavはダメだった)",
 		"Track1にTrack2を乗算したものがTrack3にあたる。Track1にTrack2はマルチトラックのテストであり、やるべきことはTrack3に「comb~ 512 256 0 0.3 0.6」の処理を通すとTrack4になれば良いということだ。",
 		"ということで、ここで必要になってくるのは.aifをパーズしてTrack3のデータを取得し、何らかの処理を加えたものを.aifで書き出す処理である。拙作ではあるが(https://github.com/mizt/AIFF,ごく簡単なコードを用意した)。","「comb~」のリファレンスのDescriptionに",
-		["p",{"style":"font-weight:bold;"},"yn = axn + bxn-(DR/1000) + cyn-(DR/1000) "],
+		["p",{"style":"font-weight:bold;"},"yn=axn+bxn-(DR/1000)+cyn-(DR/1000)"],
 		"とあり、実装に落とすと",
 		"`int _read = _write-DelayInMS;\nif(_read<0) _read+=MaximumDelayTime;\n\ndouble out = Gain*input+Feedforward*_feedforward[_read]+Feedback*_feefback[_read];\n\n_feedforward[_write] = input;\n_feefback[_write] = out;\n\nreturn out;`",
 		"のような感じになる。\n"+
