@@ -22,7 +22,7 @@ window.app = {
 			"昨年末だったか、音響処理をサーバーサイドでやりたいとういう話があった。Cとかでその処理を書いてくれれば、適当にPHPから呼び出すよと言われた。仕事内容については詳しく書けないのだけれど、その案件のモックにMSPを使った。音響処理自体は難しくはなく、実装には1日もかからなかった。\n問題はこれをどうやってサーバーで動かすかということだ。\nかつて(http://www.imgsrc.co.jp/,イメージソース)が制作した(http://tokyo.interactive.ad.awards.jp/Results09/info/57.html,Wrap Mixer)においてサーバーサイドでjitterを動かしていたように、MSPを動かすのはどうだろうかと、頭に浮かんだが現実的ではないのでやめた。\n(https://github.com/libpd/libpd,libpd)での実装も考えたが、使用したオブジェクトの幾つかがpdでは存在していなかった上に、必要なオブジェクトの数もしれていたので、MSPのクローンをつくることにした。（音響処理自体の仕組みはすぐに実装できて、だいぶ時間があったので）",
 		"まずは(http://www.audacityteam.org/,Audacity)を用意する。（これは他のDAWソフトでも問題ないだろう）",
 		"./patch.png",
-		"今回は、このようなpatchをサンプルとして使っていくのだが、問題となるのは(https://docs.cycling74.com/max5/refpages/msp-ref/comb~.html,comb~)だろう。（他は特に何も考えなくとも実装できるはずだ）\n"+
+		"今回は、このようなpatchをサンプルとして使っていくのだが、問題となるのは(https://docs.cycling74.com/max5/refpages/msp-ref/comb~.html,「comb~」)だろう。（他は特に何も考えなくとも実装できるはずだ）\n"+
 		"リンクから「comb~」リファレンスを見るとDescriptionに処理に使っている式が書かれており、ArgumentsとMessagesに大体の使い方が載っている。これと実際のパッチを用いてクローンを実装していく。",
 		"./audacity.png",
 		"図は「cycle~ 1046」「line~」「*~」「comb~ 512 256 0 0.3 0.6」から「sfrecord~ 4」の結線して録音した.aifをAudacityで開いたものである。Audacityでは.aifはマルチトラックを開けるようだ。(.wavはダメだった)",

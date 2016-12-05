@@ -282,9 +282,7 @@
 								SPAN_PARSE,
 								SPAN_MARKER
 							)
-						);
-						
-						
+						);						
 					}
 					else if(option[0]=="["&&range[0][0]!==0) {
 						
@@ -297,10 +295,7 @@
 													
 				 	}
 				 
-					//
-					 
-
-
+				
 					for(var n=0; n<range.length; n++) {
 
 						var tmp = text.substring(range[n][0]+1,range[n][1]);
@@ -310,14 +305,35 @@
 								
 					 		if(option[0]=="(") { // <a>
 									
-						 		var data = _parseTag(
+						 		var prepare = _parseTag(
 									tmp.substring(comma+1,tmp.length),
 								 	SPAN_PARSE,
 								 	SPAN_MARKER
 								);
 								
+								var data = [];
+								
+								for(var k=0; k<prepare.length; k++) {
+									
+									if(typeof(prepare[k])==="string") {
+									
+										var arr = _splitText(prepare[k]);
+																						
+										for(var l=0; l<arr.length; l++) {																	
+											_span(data,arr[l]);
+										}
+									
+									}
+									else {
+										data.push(prepare[k]);
+									}
+									
+								}
+								
 									
 							 	data.unshift("a",{href:tmp.substring(0,comma),target:_target});
+							
+								//console.log(analyze)
 							
 							 	result.push(crel.apply({},data));
 									
@@ -453,6 +469,27 @@
 				
 			};
 			
+			var _span = function(tmp,str) {
+				
+				if(str=="、"||str=="。") {
+					tmp.push(crel("span",{class:"punctuation"},str));
+				}
+				else if(str=="」"||str=="）") {
+					tmp.push(crel("span",{class:"punctuation_right"},str));
+				}
+				else if(str=="「"||str=="（") {
+					tmp.push(crel("span",{class:"punctuation_left"},str));
+				}
+				else if(str=="・") {
+					tmp.push(crel("span",{class:"punctuation_center"},str));
+				}
+				else {
+					tmp.push(crel("span",{style:"margin:0;padding:0"},""));
+					tmp.push(crel("span",str));
+				}
+			
+			}; 
+			
 			var _addClass = function(data) {
 				
 				for(var k=0; k<data.length; k++) {
@@ -465,22 +502,8 @@
 																		
 						for(var n=0; n<arr.length; n++) {
 													
-							if(arr[n]=="、"||arr[n]=="。") {
-								tmp.push(crel("span",{class:"punctuation"},arr[n]));
-							}
-							else if(arr[n]=="」"||arr[n]=="）") {
-								tmp.push(crel("span",{class:"punctuation_right"},arr[n]));
-							}
-							else if(arr[n]=="「"||arr[n]=="（") {
-								tmp.push(crel("span",{class:"punctuation_left"},arr[n]));
-							}
-							else if(arr[n]=="・") {
-								tmp.push(crel("span",{class:"punctuation_center"},arr[n]));
-							}
-							else {
-								tmp.push(crel("span",{style:"margin:0;padding:0"},""));
-								tmp.push(crel("span",arr[n]));
-							}
+							_span(tmp,arr[n]);
+							
 						}
 						
 						data[k] = tmp;
@@ -494,23 +517,9 @@
 								var arr = _splitText(data[k][n]);
 																
 								for(var m=0; m<arr.length; m++) {
+									
+									_span(tmp,arr[m]);
 								
-									if(arr[m]=="、"||arr[m]=="。") {
-										tmp.push(crel("span",{class:"punctuation"},arr[m]));
-									}
-									else if(arr[m]=="」"||arr[m]=="）") {
-										tmp.push(crel("span",{class:"punctuation_right"},arr[m]));
-									}
-									else if(arr[m]=="「"||arr[m]=="（") {
-										tmp.push(crel("span",{class:"punctuation_left"},arr[m]));
-									}
-									else if(arr[m]=="・") {
-										tmp.push(crel("span",{class:"punctuation_center"},arr[m]));
-									}
-									else {
-										tmp.push(crel("span",{style:"margin:0;padding:0"},""));
-										tmp.push(crel("span",arr[m]));
-									}
 								}
 								
 							}
