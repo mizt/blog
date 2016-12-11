@@ -32,7 +32,7 @@ img::-moz-selection, iframe::-moz-selection {
 .container {
   position: relative;
   margin: 0 auto;
-  padding: 29px 0 29px 0;
+  padding: 32px 0 42px 0;
   width: 85%;
   max-width: 960px; }
 

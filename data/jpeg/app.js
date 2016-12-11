@@ -17,7 +17,7 @@ window.app = {
 			"libjpeg-turboは以下のコンパイルオプションをつけてビルドしました。",
 			"`--without-simd`",
 			"実際のデモ。",
-			"###WebRTCを使っているのと、処理が重たい為PCのChromeでのご覧を。",
+			"####WebRTCを使っているのと、処理が重たい為PCのChromeでのご覧を。",
 			"(https://mizt.github.io/studies/jpeg/libjpeg/,libjpeg)\n"+
 			"(https://mizt.github.io/studies/jpeg/libjpegturbo/,libjpeg-turbo)",
 			"左上にある数字がフレーム間の処理速度で、私のマシンではlibjpegが40〜50に対して、libjpeg-turboは30〜40になっていて、10msくらい早くなっている。\n"+
