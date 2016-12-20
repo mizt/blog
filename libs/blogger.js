@@ -169,15 +169,17 @@
 			var _setParagraph = function(result,text) {
 				
 				var data = _parseText(text);
-					
-				_setTagName(result,"p");   
 				
+				// 
+				var h = false;
+				if(data[0].nodeType===1) {					
+					var n = data[0].nodeName;
+					if(n.length==2&&n[0].toLowerCase()==="h"&&n[1].toLowerCase()!=="r") h = true;				
+				}
 				
 				data = _addClass(data);
 				
-				
-				data.unshift("p");		
-										
+				if(!h) data.unshift("p");		
 				result.push(crel.apply({},data));
 					
 			};
@@ -304,9 +306,23 @@
 					 	if(comma+1!==tmp.length) { // テキストが存在していない場合は無視
 								
 					 		if(option[0]=="(") { // <a>
-									
+					
+					
+								var s = tmp.substring(comma+1,tmp.length);
+								
+								
+								var h = 0;
+								for(var j=0; j<s.length-1; j++) {
+									if(s[j]!="#") break;
+									h++;
+								}              
+								
+								if(h!==0) {
+									s = s.substring(h,s.length);
+								}		
+																
 						 		var prepare = _parseTag(
-									tmp.substring(comma+1,tmp.length),
+									s,
 								 	SPAN_PARSE,
 								 	SPAN_MARKER
 								);
@@ -331,11 +347,24 @@
 								}
 								
 									
-							 	data.unshift("a",{href:tmp.substring(0,comma),target:_target});
 							
+								if(h!==0) {
+									//data.unshift(crel("h"+h));
+									
+									result.push(
+										crel("h"+h,
+											crel("a",{href:tmp.substring(0,comma),target:_target},crel.apply({},data))
+										)
+									);
+								}
+								else {
+									data.unshift("a",{href:tmp.substring(0,comma),target:_target});
+									result.push(crel.apply({},data));
+
+								}
+								
 								//console.log(analyze)
 							
-							 	result.push(crel.apply({},data));
 									
 							 }
 							 else if(option[0]=="[") {
