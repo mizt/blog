@@ -31,7 +31,7 @@ window.app = {
 			"このうような処理を繰り返している。\n"+"右左に分けて、斜線部は減算、+の箇所は加算を行えば良い。その左右の増減する箇所自体は、先ほどのbox blurと同様に両端のピクセルのみ演算となる。",
 			"(./data/blur/processimage2.html,####HTML5のCanvasによるデモ)",
 			"先ほどのbox blurと比べると美しくなっているだろう。",
-			"それでよくよく調べてみると(http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html,stackBlur)というものがあるようだ。\n"+"ざっとコードを眺めてみるとアプローチが似ているようだけれど、今回のfast triangle blur方がテンポラリの配列(stack)とかないし、シンプルのような気がしている。\n"+"速度はどちらの方が速いのかだろうか。"
+			"それでよくよく調べてみると(http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html,stackBlur)というものがあるようだ。\n"+"ざっとコードを眺めてみるとアプローチが似ているようだけれど、今回のfast triangle blur方がテンポラリの配列(stack)とかないし、シンプルのような気がしている。\n"+"速度はどちらの方が速いのだろうか。"
 
 		]
 	],
