@@ -574,136 +574,128 @@
 				return data;
 			} 
 			
-			var _parse = function(arr) {
+			var _parse = function(text) {
 					
 				result = [];
-		 
-				for(var k=0; k<arr.length; k++) {
-																				
-					var text = arr[k];
-					
-					//console.log(text);
-					
-					var first = text[0];							
-					var last = text[text.length-1];
-					
-					if(first=="#") {
-												 
-						var h = 0;
-						for(var j=0; j<text.length-1; j++) {
-							if(text[j]!="#") break;
-							h++;
-						}              
-																
-						_setTagName(result,"h"+h);
-													
-						var data = _parseText(text.substring(h,text.length));
-						
-						data = _addClass(data);
-						
-						
-						data.unshift("h"+((h>=6)?6:h));
-													
-						result.push(crel.apply({},data))
-						
-					}
-					else if(first=="*") {
-						
-						_setTagName(result,"li");
-						_stack.push(_parseText(text.substring(1,text.length)));
-						
-					}
-					else if(first==">") {
-						
-						_setTagName(result,"blockquote");
-						_stack.push(_parseText(text.substring(1,text.length)));
-						
-					}
-					else if(text.length>=4&&text[text.length-4]==".") {                      
-						var extension = text.substring(text.length-3,text.length);
-						
-						if(extension=="png"||extension=="jpg"||extension=="gif"||extension=="svg") {
-						
-							_setTagName(result,"img");
-							
-							var src = text;
-							
-							//
-							if(src.indexOf("http")!==0) {
-								
-								if(src.length>=1&&src[0]=="/") src = _base+text.substr(1,text.length);
-								else if(src.length>=2&&src[0]=="."&&src[1]=="/") src = _base+text.substr(2,text.length);
-								else src = _base+text;
-								
-							}
-							else {
-								src = text;
-							}
-							
-							_total++;
-													
-							result.push(crel("img",{
-								src:src,
-								onload :"window.blogger.loadImage(); window.blogger.onload.call(this)",
-								onerror:"window.blogger.loadImage(); window.blogger.onerror.call(this)",
-							})); 
-						
-						}
-											
-						else {
-							
-							_setParagraph(result,text);
-							
-						}
-					}
-					else if(first=="`"&&last=="`") {
-					
-						_setTagName(result,"pre");
-						result.push(crel("pre",text.substring(1,text.length-1)));
-					
-					}
-					else if(first=="{"&&last=="}") { // iframe
-													
-						var data = (text.substring(1,text.length-1)).split(",");
-						
-						if(data.length==3) {
-							
-							_setTagName(result,"iframe");
-							result.push(_iframe(data));
-							
-						}	
-						else {
-							
-							_setParagraph(result,text);
+				
+				var first = text[0];							
+				var last = text[text.length-1];
+				
+				if(first=="#") {
+											 
+					var h = 0;
+					for(var j=0; j<text.length-1; j++) {
+						if(text[j]!="#") break;
+						h++;
+					}              
 															
-						}			
-					}
-					else if(first=="|"&&last=="|") {
-
-						_setTagName(result,"td"); 
+					_setTagName(result,"h"+h);
 												
-						var els = [];
-						var tds = (text.substring(1,text.length-1)).split("|");
-																 
-						for(var n=0; n<tds.length; n++) {
+					var data = _parseText(text.substring(h,text.length));
+					
+					data = _addClass(data);
+					
+					
+					data.unshift("h"+((h>=6)?6:h));
+												
+					result.push(crel.apply({},data))
+					
+				}
+				else if(first=="*") {
+					
+					_setTagName(result,"li");
+					_stack.push(_parseText(text.substring(1,text.length)));
+					
+				}
+				else if(first==">") {
+					
+					_setTagName(result,"blockquote");
+					_stack.push(_parseText(text.substring(1,text.length)));
+					
+				}
+				else if(text.length>=4&&text[text.length-4]==".") {                      
+					var extension = text.substring(text.length-3,text.length);
+					
+					if(extension=="png"||extension=="jpg"||extension=="gif"||extension=="svg") {
+					
+						_setTagName(result,"img");
+						
+						var src = text;
+						
+						//
+						if(src.indexOf("http")!==0) {
 							
-							var data = _parseText(tds[n]);
-							data.unshift("td");
-							els.push(crel.apply({},data));
+							if(src.length>=1&&src[0]=="/") src = _base+text.substr(1,text.length);
+							else if(src.length>=2&&src[0]=="."&&src[1]=="/") src = _base+text.substr(2,text.length);
+							else src = _base+text;
 							
 						}
+						else {
+							src = text;
+						}
 						
-						_stack.push(els);
-						
-					}        
-					else {
-											
-						_setParagraph(result,text);
+						_total++;
 												
+						result.push(crel("img",{
+							src:src,
+							onload :"window.blogger.loadImage(); window.blogger.onload.call(this)",
+							onerror:"window.blogger.loadImage(); window.blogger.onerror.call(this)",
+						})); 
+					
+					}
+										
+					else {
+						
+						_setParagraph(result,text);
+						
 					}
 				}
+				else if(first=="`"&&last=="`") {
 				
-				_setTagName(result,""); // end
+					_setTagName(result,"pre");
+					result.push(crel("pre",text.substring(1,text.length-1)));
+				
+				}
+				else if(first=="{"&&last=="}") { // iframe
+												
+					var data = (text.substring(1,text.length-1)).split(",");
+					
+					if(data.length==3) {
+						
+						_setTagName(result,"iframe");
+						result.push(_iframe(data));
+						
+					}	
+					else {
+						
+						_setParagraph(result,text);
+														
+					}			
+				}
+				else if(first=="|"&&last=="|") {
+
+					_setTagName(result,"td"); 
+											
+					var els = [];
+					var tds = (text.substring(1,text.length-1)).split("|");
+															 
+					for(var n=0; n<tds.length; n++) {
+						
+						var data = _parseText(tds[n]);
+						data.unshift("td");
+						els.push(crel.apply({},data));
+						
+					}
+					
+					_stack.push(els);
+					
+				}        
+				else {
+										
+					_setParagraph(result,text);
+											
+				}
+			
 
 				return result;
 				
@@ -726,7 +718,9 @@
 			_public.onload = function()  { _onload.call(this); }
 			_public.onerror = function() { _onerror.call(this); }
 			
-			_public.exec = function(arr) {
+			_public.exec = function(arr,depth) {
+				
+				if(!depth) depth = 0;
 								
 				if(window.settings) {
 					
@@ -736,76 +730,55 @@
 					if(window.settings.onerror)  _onerror  = window.settings.onerror;
 					
 				}
-									
-				var result = [];
-				var stack = [];
-				
-				var isStack = false;
 								
-				 // [] == div
-				if(tags[arr[0]]===undefined) result.unshift("div");
+				var result = [];
 				
 				for(var k=0; k<arr.length; k++) {    
-									
+
+					
 					if(Array.isArray(arr[k])) {
 					
-						isStack = false;
-						result.push(_public.exec(arr[k]));      
-					
-					}
-					else if(k==0&&tags[arr[k]]) {
-						
-						isStack = false;
-						//result.push(arr[k]);
-						result.push(crel.apply({},arr));
-						break;
-
+						result.push(_public.exec(arr[k],depth+1));
+												
 					}
 					else if(Object.isObject(arr[k])) {
+					
+						// 先頭が{}なのでdivにする
+						if(k==0) {
+							result.push("div");
+						}
 						
-						isStack = false;
-						result.push(arr[k]);
-
+						result.push(arr[k])
+					
 					}
-					else {
-											
-						if(isStack==false) {
-															
-							stack.push([]);
-							isStack = true;
-							result.push(undefined);    
+					else {			
+						
+						// タグチェック
+						if(!(k==0&&tags[arr[0]])) {
+							
+							// 先頭がタグでないのでdivにする
+							if(k==0&&!tags[arr[0]]) {
+								result.push("div");
+							}
+							
+							// パーズ
+							var tmp  = _parse(arr[k]);
+														
+							result.push(tmp);
+						}
+						else {
+							
+							result.push(arr[k]);
 							
 						}
-													
-						stack[stack.length-1].push(arr[k]);
 						
-					}      
-				}
-				
-				if(stack.length) {
-					
-					var num = stack.length;          
-					var cnt = result.length;
-					
-					while(num) {
 						
-						cnt--;
-												
-						if(result[cnt]==undefined) {
-						 
-							num--;
-														
-							var tmp = [];
-							
-							for(var k=0; k<stack[num].length; k++) tmp.push(stack[num][k]);
-							result.splice.apply(result,[cnt,0].concat(_parse(tmp)));              
-							stack[num] = null;
-														
-						}
-					}   
-				}
+						
+					}
+				}	
 				
-				stack = null;
+				_setTagName(result,""); // end
+				
 				return crel.apply({},result);
 				
 			}
