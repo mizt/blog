@@ -7,6 +7,13 @@
   letter-spacing:0.5px;
   font-kerning:none; }
 
+body {
+  font-size:15px;
+  line-height:25px;
+  margin-top:-5px;
+  margin-bottom:15px;
+}
+
 ::selection {
     background:rgba(0,0,0,0.1); }
 ::-moz-selection {
@@ -22,9 +29,6 @@ img::selection, iframe::selection {
   background:rgba(0,0,0,0); }
 img::-moz-selection, iframe::-moz-selection {
   background:rgba(0,0,0,0); }
-
-
-
 
 .strikethrough {
   text-decoration:line-through; } 
@@ -151,9 +155,8 @@ blockquote {
   padding:12px 15px; }
 
 
-blockquote:last-child a {
-  display:inline-block;
-  margin-top: 15px; }
+blockquote p:last-child {
+  margin-bottom:0px; }
  
 pre {
   font-size:14px;
@@ -212,7 +215,14 @@ span.punctuation_center {
   margin-right:0px;
 }
 
-@media (max-width: 550px) {
+@media (max-width:550px) {
+  
+  body {
+    font-size:14px;
+    line-height:22px;
+    margin-top:-4px;
+    margin-bottom:16px;
+  }
    
   h1 {
     font-size:22px;
