@@ -18,7 +18,7 @@
 		var m = new Uint8Array(Module.HEAPU8.buffer,Module._malloc(r,r));	
 		(Module.cwrap("setup","void",["number"]))(w,h);	
 		setInterval(function(){
-			var t = d.querySelector("video");''
+			var t = d.querySelector("video");
 			var r = t.getBoundingClientRect();
 			e.drawImage(t,0,0,r.width,r.height,0,0,w,h);
 			var i = e.getImageData(0,0,w,h);
