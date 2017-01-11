@@ -20,7 +20,7 @@ window.app = {
 				"a",{"id":"link","href":"https://mizt.github.io/rdm03/","target":"_blank","style":"display:inline-block; margin-bottom:20px; font-size:18px;padding:0 4px 6px;border: none;background-size: 100% 3px;background-repeat: no-repeat;background-position: bottom left;"},"rdm03"
 			],
 			"####動作環境 : Chrome (PC) + Webカメラ",
-			"旧バージョンの(https://itunes.apple.com/jp/app/rdm/id919006615,rdm)/rdm02は(https://github.com/xiph/theora,libtheora)に依存した実装である。処理内容をごく簡単に説明するとフレーム内でエンコードして、デコードを行う。\nデコード結果がキーフレームであった場合には、複合を行わない。（ここではlibtheora内で行われているエンコード・デコードの処理は忠実に実行されている）",
+			"旧バージョンの(https://itunes.apple.com/jp/app/rdm/id919006615,rdm)/rdm02は(https://github.com/xiph/theora,libtheora)に依存した実装である。処理内容をごく簡単に説明するとフレーム内でエンコードして、デコードを行う。\nデコード結果がキーフレームであった場合には、複合を行わない。（ここではlibtheoraによるエンコード・デコードの処理は忠実に実行されている）",
 			"rdm03 の目的は「圧縮」ではない。正しくデーターモッシュをすることである。",
 			"圧縮目的としてではなく、データーモッシュのためにフルスクラッチで設計した。実装の一部はtheoraのソースコードやそれにまつわるドキュメントの多くを参照している。圧縮ではないためlibtheoraで行われているDCTとVLCの部分は省き(https://en.wikipedia.org/wiki/Motion_compensation,フレーム間予測)の部分のみの実装となっている。",
 			["h4","DCTは",["a",{"href":"https://mizt.github.io/blog/?id=dct","target":"_blank"},"こちら"],"にも書いたのだが、DCTとVLCについては",["a",{"href":"https://www.amazon.co.jp/dp/4797306327/sr=1-4/qid=1474028495/","target":"_blank"},"JPEG―概念からC++による実装まで (SOFTBANK BOOKS)"],"を参照されたい"],
