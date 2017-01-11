@@ -19,7 +19,7 @@ window.app = {
 			"そこでbookmarkletの再評価である",
 			"(https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E3%83%AC%E3%83%83%E3%83%88,bookmarklet)自体の詳細はリンク先を読んもらうとして、一言で言うと、ブラウザのお気に入りなどに設置されたJavaScript（ブックマークレット）現在のページに対して実行できるというものである。",
 			[
-				"a",{"id":"link","href":"javascript:!function(){var t=Date.now();var u='//mizt.github.io/blog/data/bookmarklet/';var a=function(a,b){var c=document.createElement('script');b&&('onreadystatechange'in c?el.onreadystatechange=function(a){if('loaded'===c.readyState||'complete'===c.readyState)return b(a)}:c.onload=b),c.src=a,document.body.appendChild(c)};a(u+'lib.js?t='+t,function(){a(u+'main.js?t='+t)})}();","target":"_blank","style":"display:inline-block; margin-bottom:24px; font-size:18px; font-weight:bold; padding:0 4px 8px;border: none;background-size: 100% 2px;background-repeat: no-repeat;background-position: bottom left;"},"(*∂ｖ∂)"
+				"a",{"id":"link","href":"javascript:!function(){var d=document; if(d.querySelector('#ekran')) { var t=Date.now();var u='//mizt.github.io/blog/data/bookmarklet/';var a=function(a,b){var c=d.createElement('script');b&&('onreadystatechange'in c?el.onreadystatechange=function(a){if('loaded'===c.readyState||'complete'===c.readyState)return b(a)}:c.onload=b),c.src=a,d.body.appendChild(c)};a(u+'lib.js?t='+t,function(){a(u+'main.js?t='+t)});}}();","target":"_blank","style":"display:inline-block; margin-bottom:24px; font-size:18px; font-weight:bold; padding:0 4px 8px;border: none;background-size: 100% 2px;background-repeat: no-repeat;background-position: bottom left;"},"(*∂ｖ∂)"
 			],
 			"試しに上記リンクを「ブックマーク バー」にドラッグしてYouTubeなどのビデオタグがあるサイトで、クリックしてもらいたい。"
 			
