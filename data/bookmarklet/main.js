@@ -17,7 +17,7 @@
 		s.width = w+"px";
 		s.height = h+"px";
 		
-		var m = new Uint8Array(Module.HEAPU8.buffer,Module._malloc(r,r));	
+		var m = new Uint8Array(Module.HEAPU8.buffer,Module._malloc(r),r);	
 		
 		(Module.cwrap("setup","void",["number","number"]))(w,h);
 		var f=(Module.cwrap("draw","void",["number"]));
