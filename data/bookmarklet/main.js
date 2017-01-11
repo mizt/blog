@@ -1,6 +1,6 @@
 !function(){
 	var d = document,
-		t = d.querySelector("video")),
+		t = d.querySelector("video"),
 		w = 656,
 		h = 368;
 	var r = (w*h)<<2;
