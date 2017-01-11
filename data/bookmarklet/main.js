@@ -16,14 +16,13 @@
 		s.top = 0;
 		s.width = w+"px";
 		s.height = h+"px";
-		
 		var m = new Uint8Array(Module.HEAPU8.buffer,Module._malloc(r,r));	
 		(Module.cwrap("setup","void",["number"]))(w,h);	
 		
 		setInterval(function(){
 			var b = t.getBoundingClientRect();
 			console.log(b.width,b.height);
-			e.drawImage(t,0,0,0,0,w,h);
+			e.drawImage(t,0,0,w,h);
 			var i = e.getImageData(0,0,w,h);
 			m.set(new Uint8Array(i.data.buffer));
 			(Module.cwrap("draw","void",["number"]))(m.byteOffset);
