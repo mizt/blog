@@ -14,18 +14,21 @@
 		s.zIndex=10000000000;
 		s.position="absolute";
 		s.top = 0;
-		s.width = w;
-		s.height = h;
+		s.width = w+"px";
+		s.height = h+"px";
+		
 		var m = new Uint8Array(Module.HEAPU8.buffer,Module._malloc(r,r));	
 		(Module.cwrap("setup","void",["number"]))(w,h);	
+		
 		setInterval(function(){
-			t = d.querySelector("video");
-			var r = t.getBoundingClientRect();
-			e.drawImage(t,0,0,r.width,r.height,0,0,w,h);
+			var b = t.getBoundingClientRect();
+			console.log(b.width,b.height);
+			e.drawImage(t,0,0,0,0,w,h);
 			var i = e.getImageData(0,0,w,h);
 			m.set(new Uint8Array(i.data.buffer));
 			(Module.cwrap("draw","void",["number"]))(m.byteOffset);
 			e.putImageData(i,0,0);
 		},50);
+		
 	}
 }();
