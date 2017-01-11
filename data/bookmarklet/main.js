@@ -18,8 +18,8 @@
 		(Module.cwrap("setup","void",["number"]))(w,h);	
 		setInterval(function(){
 			e.drawImage(t,0,0);
-			var i = e.getImageData(0,0,w,h).data;
-			m.set(new Uint8Array(i.buffer));
+			var i = e.getImageData(0,0,w,h);
+			m.set(new Uint8Array(i.data.buffer));
 			(Module.cwrap("draw","void",["number"]))(m.byteOffset);
 			e.putImageData(i,0,0);
 		},50);
