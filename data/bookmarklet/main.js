@@ -34,7 +34,7 @@
 			i.data.set(m);			
 			e.putImageData(i,0,0);
 			
-		},50);
+		},33);
 				
 	}
 }();
