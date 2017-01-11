@@ -5,9 +5,9 @@
 		h = 368;
 	var r = (w*h)<<2;
 	
-	if(!!t&&!!d.querySelector("#ekran")) {
+	if(!!t&&!d.querySelector("#ekran")) {
 		var c = d.createElement("canvas");
-		c.id = "#ekran";
+		c.id = "ekran";
 		c.width = w; c.height = h;
 		var e = c.getContext("2d");
 		d.body.appendChild(c);
