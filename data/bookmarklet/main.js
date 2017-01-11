@@ -22,10 +22,11 @@
 		setInterval(function(){
 			var b = t.getBoundingClientRect();
 			console.log(b.width,b.height);
-			e.drawImage(t,0,0,w,h);
+			e.drawImage(t,0,0,w,h);			
 			var i = e.getImageData(0,0,w,h);
 			m.set(new Uint8Array(i.data.buffer));
 			(Module.cwrap("draw","void",["number"]))(m.byteOffset);
+			i.data.set(m);			
 			e.putImageData(i,0,0);
 		},50);
 		
