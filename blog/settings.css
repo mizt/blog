@@ -4,7 +4,7 @@
   padding:0;
   font-family:"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","游ゴシック","Yu Gothic","メイリオ",Meiryo,Osaka,sans-serif;
   text-rendering:optimizeSpeed;
-  letter-spacing:0.5px;
+  letter-spacing:1.5px;
   font-kerning:none; }
 
 body {
@@ -105,8 +105,8 @@ p {
   margin-bottom:15px;
   color:#444;
   text-align:justify; 
-  word-break: break-all;
   word-wrap: break-word;
+  word-break: break-all;
 }
 
 ul, blockquote, img, pre, img, table, .iframeWrapper {
