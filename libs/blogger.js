@@ -16,7 +16,7 @@
 			var A_MARKER = ["(",")"];
 			var SPAN_PARSE = (/\[#(.*?),|\[.(.*?),|\[div,.(.*?),|\[div,.(#*?),/g);
 			var SPAN_MARKER = ["[","]"];
-			var ASCII = (/[\x20-\x7E〜]+|、|。|「|」|）|（|・/g);
+			var ASCII = (/[\x20-\x27\x2A-\x7E〜]+|、|。|「|」|）|（|・/g);
 
 			var _instance=function(){};
 			
@@ -516,7 +516,6 @@
 					tmp.push(crel("span",{class:"punctuation_left"},str));
 				}
 				else if(str=="・") {
-					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",{class:"punctuation_center"},str));
 				}
 				else {
