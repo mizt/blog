@@ -504,23 +504,23 @@
 			var _span = function(tmp,str) {
 				
 				if(str=="、"||str=="。") {
-					tmp.push(crel("span",{style:"margin:0;padding:0"},""));
+					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",{class:"punctuation"},str));
 				}
 				else if(str=="」"||str=="）") {
-					tmp.push(crel("span",{style:"margin:0;padding:0"},""));
+					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",{class:"punctuation_right"},str));
 				}
 				else if(str=="「"||str=="（") {
-					tmp.push(crel("span",{style:"margin:0;padding:0"},""));
+					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",{class:"punctuation_left"},str));
 				}
 				else if(str=="・") {
-					tmp.push(crel("span",{style:"margin:0;padding:0"},""));
+					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",{class:"punctuation_center"},str));
 				}
 				else {
-					tmp.push(crel("span",{style:"margin:0;padding:0"},""));
+					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",str));
 				}
 			
