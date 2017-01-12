@@ -31,6 +31,7 @@ window.settings = {
 	},
 
 	load:function() {
+		//console.log("load")
 		document.body.style.overflow = "hidden";
 	},
 
@@ -154,7 +155,13 @@ window.settings = {
 			};
 		}());
 		
-		document.body.style.overflow = "auto";
+		console.log("window.app.overflow",!!window.app.overflow);
+		
+		if(window.app.overflow===undefined) document.body.style.overflow = "auto";
+		else {
+			document.body.style.overflow = window.app.overflow;
+		}
+		
 		document.getElementById("wrapper").style.opacity = 1.0;
 		
 		// Chrome has a bug in  text-align:Justify
@@ -163,21 +170,23 @@ window.settings = {
 					
 			var checkOverJustify = function() {
 
-				var w = document.querySelector(".container").offsetWidth;
-				var s = document.querySelectorAll("span")
+				if(document.querySelector(".container")) {
+					var w = document.querySelector(".container").offsetWidth;
 
-				var isOver = false;
-				for(var n=0; n<s.length; n++) if(s[n].offsetWidth>w+4) { isOver = true; }
+					var isOver = false;
+					for(var n=0; n<s.length; n++) if(s[n].offsetWidth>w+4) { isOver = true; }
 
-				if(isOver) {
-					
-					//console.log("resize");
-					
-					if(w==960) {
-						document.querySelector(".container").style.maxWidth = (960-2)+"%";
-					}
-					else {
-						document.querySelector(".container").style.width = "84%";
+					if(isOver) {
+						
+						//console.log("resize");
+						
+						if(w==960) {
+							document.querySelector(".container").style.maxWidth = (960-2)+"%";
+						}
+						else {
+							document.querySelector(".container").style.width = "84%";
+						}
+						
 					}
 				}
 			}
@@ -191,13 +200,21 @@ window.settings = {
 				}
 				
 				tid = setTimeout(function () {		
-					var container = document.querySelector(".container");
-					container.style.maxWidth = 960;
-					container.style.width = "85%";
-					setTimeout(function() {
-						checkOverJustify();
-					},33);
+				
+					if(document.querySelector(".container")) {
+						var container = document.querySelector(".container");
+						container.style.maxWidth = 960;
+						container.style.width = "85%";
+						
+						setTimeout(function() {
+							checkOverJustify();
+						},33);
+						
+					}
+				
 				},33);
+				
+				
 			});
 
 			setTimeout(function() {
