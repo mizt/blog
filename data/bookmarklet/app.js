@@ -24,7 +24,7 @@ window.app = {
 				"a",{"id":"link","href":"javascript:!function(){var d=document; if(!d.querySelector('#ekran')) { var t=Date.now();var u='//mizt.github.io/blog/data/bookmarklet/';var a=function(a,b){var c=d.createElement('script');b&&('onreadystatechange'in c?el.onreadystatechange=function(a){if('loaded'===c.readyState||'complete'===c.readyState)return b(a)}:c.onload=b),c.src=a,d.body.appendChild(c)};a(u+'lib.js?t='+t,function(){a(u+'main.js?t='+t)});}}();","target":"_blank","style":"display:inline-block; margin-top:-4px; margin-bottom:24px; font-size:18px; font-weight:bold; padding:0 4px 8px;border: none;background-size: 100% 2px;background-repeat: no-repeat;background-position: bottom left;"},"(*∂ｖ∂)"
 			],
 			"デモを用意したので、試しに上記リンクを「ブックマーク バー」にドラッグして、YouTubeなどのvideoタグがあるサイトで、bookmarkletをクリックしてもらいたい。",
-			"技術的に特筆すべき点はないのだが、注意事項としてJavaScriptの文字制限がブラウザ毎にあるらしく、xhrで外部JavaScriptを読み込むというのがお作法のようだ.。\n"+"後は好きにJavaScriptを書けば良い。"
+			"技術的に特筆すべき点はないのだが、注意事項としてJavaScriptの文字制限がブラウザ毎にあるらしく、xhrで外部JavaScriptを読み込むというのがお作法のようだ。\n"+"後は好きにJavaScriptを書けば良い。"
 		]
 	],
 	
