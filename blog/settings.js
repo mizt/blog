@@ -174,6 +174,7 @@ window.settings = {
 					var w = document.querySelector(".container").offsetWidth;
 
 					var isOver = false;
+					var s = document.querySelectorAll("span");
 					for(var n=0; n<s.length; n++) if(s[n].offsetWidth>w+4) { isOver = true; }
 
 					if(isOver) {
