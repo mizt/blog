@@ -18,7 +18,7 @@ window.app = {
 			"もとのソースコードでは(https://github.com/kimasendorf/ASDFPixelSort/blob/master/ASDFPixelSort.pde#L27,上記の値)で(https://github.com/kimasendorf/ASDFPixelSort/blob/master/ASDFPixelSort.pde#L249,ソートするピクセルの範囲)の決定をしているのだけれど、今回はこの閾値を縦と横で別々にを設定できるように変更した。\n"+
 			"とりあえず(https://github.com/kripken/emscripten,Emscripten)でJavascriptにして動作のテストをする。",
 			"./fig1.png",
-			"(./data/pixselsort/index.html,####HTML5のCanvasによるデモ)",
+			"(./data/pixelsort/index.html,####HTML5のCanvasによるデモ)",
 			"だいたい合っているのではないだろうか。",
 			"これをAEのプラグイン化していく。(http://www.adobe.com/devnet/aftereffects/sdk/cc2015.html,After Effects CC 2015 Plug-in SDK)をダウンロードしてきてEffectフォルダ内にある適当なサンプルをベースに（今回はGamma_Tableを使用）して、Render関数に先ほどのピクセル・ソートの処理を追加すればよい。",
 			"注意点としてはGamma_Tableは出力がクリッピングされるようになっているので、ソート処理のために画面外も考慮する必要がありout_flagsを変更した。",
