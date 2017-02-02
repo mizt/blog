@@ -20,7 +20,7 @@ console.log("app.js");
 				"##必要そうなソフトウエアのインストール",
 				"(https://www.visualstudio.com/ja/vs/visual-studio-2017-rc/,visual Studio Community 2017)\nいろいろインストールオプションがあったけれど、後からなんとかなると思ってC#とC++にチェックした。NDKとかのオプションもあるのかと思ったけれどいったん無視。",
 				"(https://notepad-plus-plus.org/,notepad++)\n必要に迫られて開発していた時に使っていたメインエディタ。Macの時は(https://coderunnerapp.com/,CodeRunner)を使っていたので類似ソフトがあるといいけれど、調べるのも面倒くさいのでいったんこれで。",
-				"Chainer\n(http://qiita.com/akrian/items/953082aa8f00479dbb01,Windows環境でChainerのGPUを使えるようにするまで)",
+				"Chainer\n(http://qiita.com/akrian/items/953082aa8f00479dbb01,Windows環境でChainerのGPUを使えるようにするまで)\nvc2017を入れてしまったので、(http://qiita.com/samacoba/items/7fa5883d7d715aeabd53,chainerインストールメモ(windows10 python3.5 cuda8.0))を試す。",
 				"(http://www.syntevo.com/smartgit/,SmartGit)\nGitクライアント、Macの時は(https://www.git-tower.com/,Tower)を使っていた。",
 				"(https://cyberduck.io/index.ja.html,Cyberduck)\nApp Storeから課金してかったけれど今回はいいか。",
 				"Emscripten",
