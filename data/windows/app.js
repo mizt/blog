@@ -20,14 +20,16 @@ console.log("app.js");
 				"##必要そうなソフトウエアのインストール",
 				"(https://www.visualstudio.com/ja/vs/visual-studio-2017-rc/,visual Studio Community 2017)\nいろいろインストールオプションがあったけれど、後からなんとかなると思ってC#とC++にチェックした。NDKとかのオプションもあるのかと思ったけれどいったん無視。",
 				"(https://notepad-plus-plus.org/,notepad++)\n必要に迫られて開発していた時に使っていたメインエディタ。Macの時は(https://coderunnerapp.com/,CodeRunner)を使っていたので類似ソフトがあるといいけれど、調べるのも面倒くさいのでいったんこれで。",
+				"Bash on Ubuntu on Windows\n"+
+				"(http://kanonji.info/blog/2017/01/11/note-of-setup-bash-on-ubuntu-on-windows/,Bash on Ubuntu on Windowsのセットアップ備忘録)",
 				"Chainer\n(http://qiita.com/akrian/items/953082aa8f00479dbb01,Windows環境でChainerのGPUを使えるようにするまで)\nvc2017を入れてしまったので、(http://qiita.com/samacoba/items/7fa5883d7d715aeabd53,chainerインストールメモ(windows10 python3.5 cuda8.0))を試す。",
 				"(http://www.syntevo.com/smartgit/,SmartGit)\nGitクライアント、Macの時は(https://www.git-tower.com/,Tower)を使っていた。",
 				"(https://cyberduck.io/index.ja.html,Cyberduck)\nApp Storeから課金してかったけれど今回はいいか。",
-				"Emscripten",
+				"Emscripten\n"+
 				"(http://qiita.com/takao_mofumofu/items/c331d0e4345eb0f353ae,Windows上でのEmscriptenのセットアップ)",
 				"いったんこんな感じで。Max/MSPとかUnityとかAdobeは必要に迫られたらインストールすことにしよう。",
 				"##設定周り",
-				"(http://www.lifehacker.jp/2015/08/150811windows10_startmenu.html,Windows 10の「スタートメニュー」をカスタマイズする方法)"+"\n「ゲームとエンターテイメント」は必要ないので、完全に削除しました。余計なことしないで欲しい。"
+				"(http://www.lifehacker.jp/2015/08/150811windows10_startmenu.html,Windows 10の「スタートメニュー」をカスタマイズする方法)"+"\n「ゲームとエンターテイメント」は必要ないので、完全に削除しました。同意。余計なことしないで欲しい。全部消した。"
 			]
 		],
 		ready:function() {
