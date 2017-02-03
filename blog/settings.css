@@ -182,8 +182,12 @@ span {
   margin-right:2px;
 }
 
+span.br + span {
+  margin-right:0px;
+}
+
 span.punctuation {
-  letter-spacing:-5px;
+  letter-spacing:-4px;
   margin-left:-2px;
   margin-right:0px;
 }

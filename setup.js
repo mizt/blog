@@ -91,6 +91,8 @@
 		//load("./libs/com/getskeleton/skeleton.css",function() {
 			load("./libs/blogger.js",function() {	
 				
+				var option = (location.href.indexOf("file://")==0)?"":"?t="+Date.now(); 
+				
 				window.blogger.add("load",load);
 				window.blogger.set("./data/"+(Query.get("id")||"index")+"/");				
 				window.blogger.load(window.blogger.get()+"app.js",function() {
