@@ -13,6 +13,12 @@ body {
   margin-top:-5px;
 }
 
+video {
+  margin-bottom:15px;
+  vertical-align:bottom;
+  width:100%;
+}
+
 ::selection {
     background:rgba(0,0,0,0.1); }
 ::-moz-selection {
