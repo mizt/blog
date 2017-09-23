@@ -7,27 +7,25 @@ window.app = {
 	html:[
 		{"id":"wrapper"},[
 			{"class":"container"},
-			["h1",
-				"メイキングオブ ",
-				["span",{"style":"text-decoration:line-through; color:#222;"},"ograyui.js"],
-				" rdm03.js"
-			],
+			"#rdm03.js",
 			">グリッチとは、意図されておらず予測されていなかった状態が再生装置によって再生されることである。",
 			">- (http://ucnv.org/turpentine/assets/turpentine.pdf,ucnv, turpentine)",
-			"rdm03は正しくデーターモッシュをする。",
+			"rdm03は正しくデータモッシュをする。",
 			"rdm03.png",
 			[
-				"a",{"id":"link","href":"https://mizt.github.io/rdm03/","target":"_blank","style":"display:inline-block; margin-bottom:20px; font-size:18px;padding:0 4px 6px;border: none;background-size: 100% 3px;background-repeat: no-repeat;background-position: bottom left;"},"rdm03"
+				"a",{"id":"link","href":"https://mizt.github.io/rdm03/","target":"_blank","style":"display:inline-block; margin-bottom:28px; font-size:18px;padding:0 4px 6px;border: none;background-size: 100% 3px;background-repeat: no-repeat;background-position: bottom left;"},"rdm03"
 			],
-			"####動作環境 : Chrome (PC) + Webカメラ",
-			"旧バージョンの(https://itunes.apple.com/jp/app/rdm/id919006615,rdm)/rdm02は(https://github.com/xiph/theora,libtheora)に依存した実装である。処理内容をごく簡単に説明するとフレーム内でエンコードして、デコードを行う。\nデコード結果がキーフレームであった場合には、複合を行わない。（ここではlibtheoraによるエンコード・デコードの処理は忠実に実行されている）",
-			"rdm03 の目的は「圧縮」ではない。正しくデーターモッシュをすることである。",
-			"圧縮目的としてではなく、データーモッシュのためにフルスクラッチで設計した。実装の一部はtheoraのソースコードやそれにまつわるドキュメントの多くを参照している。圧縮ではないためlibtheoraで行われているDCTとVLCの部分は省き(https://en.wikipedia.org/wiki/Motion_compensation,フレーム間予測)の部分のみの実装となっている。",
-			["h4","DCTは",["a",{"href":"https://mizt.github.io/blog/?id=dct","target":"_blank"},"こちら"],"にも書いたのだが、DCTとVLCについては",["a",{"href":"https://www.amazon.co.jp/dp/4797306327/sr=1-4/qid=1474028495/","target":"_blank"},"JPEG―概念からC++による実装まで (SOFTBANK BOOKS)"],"を参照されたい"],
+			"旧バージョンのrdm／rdm02は(https://github.com/xiph/theora,libtheora)に依存した実装である。\nフレーム内でエンコードして、デコードを行う。デコード結果がキーフレームであった場合には、複合を行わない。（ここではlibtheoraによるエンコード／デコードの処理は忠実に実行されている）",
+			//"旧バージョンの(https://itunes.apple.com/jp/app/rdm/id919006615,rdm)/rdm02は(https://github.com/xiph/theora,libtheora)に依存した実装である。\nフレーム内でエンコードして、デコードを行う。デコード結果がキーフレームであった場合には、複合を行わない。（ここではlibtheoraによるエンコード／デコードの処理は忠実に実行されている）",
+
+			"rdm03の目的は「圧縮」ではない。正しくデータモッシュをすることである。",
+			"圧縮目的としてではなく、データモッシュのためにフルスクラッチで設計した。実装の一部はtheoraのソースコードやそれにまつわるドキュメントの多くを参照している。圧縮ではないためlibtheoraで行われているDCTとVLCの部分は省き(https://en.wikipedia.org/wiki/Motion_compensation,フレーム間予測)の部分のみの実装となっている。",
+			["h4","DCTについては",["a",{"href":"https://mizt.github.io/blog/?id=dct","target":"_blank"},"こちら"],"にも書いたのだが、DCTとVLCにの詳細は",["a",{"href":"https://www.amazon.co.jp/dp/4797306327/sr=1-4/qid=1474028495/","target":"_blank"},"JPEG―概念からC++による実装まで (SOFTBANK BOOKS)"],"を参照されたい"],
 			"###技術情報について",
-			"以下に書く情報はtheoraの実装や、ネット上に転がる幾つかのフレーム間予測の資料を斜め読みした結果から構成されている。（故に、幾つか誤った情報が含まれているかもしれない）",
+			
+			"以下に書く情報はtheoraの実装や、ネット上に転がる幾つかのフレーム間予測の資料を斜め読みした情報をもとに、独自実装した結果によって構成されている。（故に、幾つか誤った情報が含まれているかもしれない）",
 			"###テスト素材について",
-			"テストに使用した動画は(https://www.youtube.com/watch?v=38lJ9cpYUV8,小倉唯「ハイタッチ☆メモリー」MUSIC VIDEO (short ver.))から引用した。JavaScriptでの処理を考えて16:9に近いサイズで、16（マクロブロックのサイズ）の倍数である656/368pxに縮小している。順にキーフレーム、一つ前のフレーム、現在のフレームとする。",
+			"テスト動画は(https://peach.blender.org/download/,Big Buck Bunny IPod Touch / IPhone 640×360, 115 MB)を使用した。16px（マクロブロックのサイズ）の倍数である640/352pxに合わせるため8pxカットしている。順にキーフレーム、一つ前のフレーム、現在のフレームである。",
 			"img_00.png",
 			"img_01.png",
 			"img_02.png",
@@ -39,12 +37,10 @@ window.app = {
 			"theoraには幾つかの(https://github.com/xiph/theora/blob/fbb275803696085225c310773474ef4dcf8a4528/lib/state.h#L186,符号（複合）化モード)がある。これはマクロブロック（DCTのブロックを縦横2つづつの16x16の矩形）が、どのモードによって符号化されるのかを示すためのものである。リアルタイム処理を考えrdm03ではtheoraよりモードが少なくなっている。\n以下がrdm03で採用したtheoraによって定義されている符号化モードである（各モードに対するカラーについてはデバッグ用として割り当ててある）。",
 			"name.png",
 			"mode.png",
-			"モードについて簡単に補足するとINTRAが現在のフレーム、INTERが一つ前のフレーム、GOLDENがキーフレームとなっている。MVが付く場合（NOMVでない場合）は符号化モードを決定する際に、ブロックマッチングを行い算出されたモーションベクトルの値によって複合時に動き補償を行う。\nモード算出には先述のSADや(https://en.wikipedia.org/wiki/Variance,分散)などを用い閾値を超えているかを判別して振り分けている。（(https://github.com/xiph/theora/blob/master/lib/encode.c#L26,閾値はtheoraの値を参照した)）\n動きベクトルの算出時のブロックマッチングのアルゴリズムは、今回のデモではtheoraが採用しているステップサーチとした。（(https://www.marumo.ne.jp/db2005_1.htm,動き検索あれこれ [2] - ステップサーチ)）\n動きベクトルの算出のアルゴリズムを変更することで、データモッシングによる表情が変わることとなる。（現状、ダイアモンドサーチも実装済み）\n探索範囲は(http://home.catv.ne.jp/dd/pub/book/mpeg.html#5.4,ハーフペル)としている。これによりデーターモッシュ時に滲みが発生する。",
+			"モードについて簡単に補足するとINTRAが現在のフレーム、INTERが一つ前のフレーム、GOLDENがキーフレームとなっている。MVが付く場合（NOMVでない場合）は符号化モードを決定する際に、ブロックマッチングを行い算出されたモーションベクトルの値によって複合時に動き補償を行う。\nモード算出には先述のSADや(https://en.wikipedia.org/wiki/Variance,分散)などを用い閾値を超えているかを判別して振り分けている。（(https://github.com/xiph/theora/blob/master/lib/encode.c#L26,閾値はtheoraの値を参照した)）\n動きベクトルの算出時のブロックマッチングのアルゴリズムは、今回のデモではtheoraが採用しているステップサーチとした。（(https://www.marumo.ne.jp/db2005_1.htm,動き検索あれこれ [2] - ステップサーチ)）\n動きベクトルの算出のアルゴリズムを変更することで、データモッシングによる表情が変わることとなる。（現状、ダイアモンドサーチも実装済み）\n探索範囲は(http://home.catv.ne.jp/dd/pub/book/mpeg.html#5.4,ハーフペル)としている。これによりデータモッシュ時に滲みが発生する。",
 			"###動きベクトルと動き補償",
-			"符号化モードのときに検出された動きベクトル。",
-			"vec.png",			
-			"先ほどの動きベクトルのx方向をR値に、y方向をG値に法泉マップのような形で表した場合はこのように表示できる。",
-			"normal.png",
+			"符号化モードのときに検出された動きベクトルとなる。",
+			"vec.png",
 			"INTER・GOLDENのモードを考慮し、動きベクトルにより動き補償した復元結果となる。",
 			"compensated.png",
 			"###残余画像",
@@ -53,7 +49,7 @@ window.app = {
 			"動き補償した復元結果に、残余画像を加算すると現在のフレームが複合されることとなる。",
 			"img_02.png",
 			"###rdm03について",
-			"一般的にデーターモッシュをさせるには、動画からキーフレームを抜くという行為を行う。キーフレーム抜くため、フレームが抜け落ちることになる。\nリアルタイムであることを考慮してrdm03ではキーフレームの更新タイミングで、一つ前のフレームを挿入している。それにより前述した欠損がなくなり滑らかなフレームの動きになっている。\nまた今回のデモでは復元するのに用いる一つ前の画像は、前フレームでディスプレイに表示されているものにしている。（実際に符号化に使うものは正常な一つ前のフレームだ）\nOC_MODE_GOLDEN_NOMV（動きベクトルが無いキーフレーム）を参照する場合には処理を無視するなどの処理を加えている。（正確には、省いているわけだが）\nrdm03では、圧縮されたファイル/再生装置ではないので、動きベクトルの探索の種類、複合する方法の変更などを外部パラメータからリアルタイムに変更する等のことも可能である。",
+			"一般的にデータモッシュさせるには動画からキーフレームを削除して複合させる。キーフレームが欠損したまま複合するので正しい動画が表示されず壊れる。\nrdm03ではリアルタイムであることを考慮してキーフレームの更新タイミングで、一つ前のフレームを挿入している。それにより前述した欠損がなくなり滑らかなフレームの動きになっている。\nまた今回のデモでは復元するのに用いる一つ前の画像は、前フレームでディスプレイに表示されているものを採用している。（実際に符号化に使うものは正常な一つ前のフレーム）\nOC_MODE_GOLDEN_NOMV（動きベクトルが無いキーフレーム）を参照する場合にも処理を無視するなどの処理を加えている。\nrdm03は圧縮されたファイル/再生装置ではないので、動きベクトルの探索の種類、複合する方法の変更などを外部パラメータからフレームごとにリアルタイムに変更する等も可能となる。",
 			"###参考文献",
 			"(https://www.theora.org/,https://www.theora.org/)\n"+
 			"(https://people.xiph.org/~tterribe/pubs/lca2008/anatomy.pdf,Anatomy of a Video Codec)\n"+
