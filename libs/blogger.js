@@ -518,6 +518,9 @@
 				else if(str=="・") {
 					tmp.push(crel("span",{class:"punctuation_center"},str));
 				}
+				else if(ASCII.exec(str)!=null) {
+					tmp.push(crel("span",{class:"en"},str));
+				}
 				else {
 					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",str));

@@ -103,7 +103,6 @@ h4 {
   line-height:20px;
   margin-top:-3px;
   margin-bottom:17px; }  
-  
 
 p {
   font-size:15px;
@@ -113,6 +112,10 @@ p {
   color:#444;
   text-align:justify; 
   word-wrap: break-word;
+  word-break: break-strict;
+}
+
+span.en {
   word-break: break-all;
 }
 
