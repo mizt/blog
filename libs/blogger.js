@@ -128,9 +128,7 @@
 								crel(blockquote,crel.apply({},_stack[k]));
 								
 								//crel(blockquote,_stack[k]);
-								
-								//if(k!=_stack.length-1) crel(blockquote,crel("span",{class:"br"}));
-								
+								//if(k!=_stack.length-1) crel(blockquote,crel("span",{class:"br"}));								
 								
 							}
 								
@@ -188,7 +186,6 @@
 			};
 			
 			var _splitText = function(text) {
-				
 				
 				var matches = [];
 
@@ -276,9 +273,7 @@
 						
 					// 検索結果より前を考慮
 					if(option[0]=="("&&matches[0].index!==0) {
-								
-							
-													
+										
 						//result = result.concat
 						Array.prototype.push.apply(
 							result,
@@ -296,11 +291,9 @@
 							_parseLine(
 								text.substring(0,range[0][0])
 							)
-						);
-													
+						);						
 				 	}
 				 
-				
 					for(var n=0; n<range.length; n++) {
 
 						var tmp = text.substring(range[n][0]+1,range[n][1]);
@@ -349,8 +342,6 @@
 									
 								}
 								
-									
-							
 								if(h!==0) {
 									//data.unshift(crel("h"+h));
 									
@@ -371,13 +362,8 @@
 									
 							 }
 							 else if(option[0]=="[") {
-							 						
-							
-
-								
+							 		
 								if(tmp.indexOf("div,")==0) {
-									
-									
 									
 									var attributes = tmp.substring(comma+1,range[n][1]);
 									
@@ -441,7 +427,6 @@
 							if(range[n][1]+1!==text.length&&(n==range.length-1||range[n][1]+1!==range[n+1][0])) {
 
 								var string = text.substring(range[n][1]+1,(n==range.length-1)?text.length:range[n+1][0]);			                	
-
 								if(option[0]=="(") {				
 								
 									result.push(_parseTag(
@@ -460,9 +445,6 @@
 
 							 	}
 							 }
-
-							//
-
 						 }           
 					 }
 				 }
@@ -541,7 +523,6 @@
 						for(var n=0; n<arr.length; n++) {
 													
 							_span(tmp,arr[n]);
-							
 						}
 						
 						data[k] = tmp;
@@ -557,23 +538,18 @@
 								for(var m=0; m<arr.length; m++) {
 									
 									_span(tmp,arr[m]);
-								
 								}
-								
 							}
 							else {
 								
 								tmp.push(data[k][n]);
 							}
-							
 						}
 						
 						data[k] = tmp;
-						
 					}
 					
 					//console.log(data[k]);
-					
 				}
 				
 				return data;
@@ -702,13 +678,11 @@
 					else result.push(text);
 											
 				}
-			
 
 				return result;
 				
 			};
 		
-			
 			var _public = _instance.prototype;
 			
 			_public.isPreload = function() {
@@ -768,28 +742,18 @@
 								result.push("div");
 							}
 							
-							
 							// パーズ
 							var tmp  = _parse(arr[k],depth);
-																
-
-														
+																														
 							result.push(tmp);
 						}
-						else {
-							
+						else {							
 							result.push(arr[k]);
-							
 						}
-						
-						
-						
 					}
-				}	
-				
+				}
 
 				_setTagName(result,""); // end
-
 
 				return crel.apply({},result);
 				
@@ -797,7 +761,6 @@
 						
 			// constructor
 			var initalize = function(args) { 
-				
 				return _instance;
 			}
 						
