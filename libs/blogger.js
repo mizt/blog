@@ -10,7 +10,14 @@
 	
 	window.blogger = window.blogger || new (function() {
 		
-		return new ((function() {
+		return ((function(args) {
+			
+			var _this = new this();
+
+
+			//console.log("@",this);
+			
+			//var _this = new this();
 			
 			var A_PARSE = (/\(http(.*?):(.*?),|\(.{0,2}\/(.*?),/g);
 			var A_MARKER = ["(",")"];
@@ -18,7 +25,7 @@
 			var SPAN_MARKER = ["[","]"];
 			var ASCII = (/[\x20-\x27\x2A-\x7E〜]+|、|。|「|」|）|（|・/g);
 
-			var _instance=function(){};
+			//var _instance=function(){};
 			
 			var _stack = [];
 
@@ -683,7 +690,10 @@
 				
 			};
 		
-			var _public = _instance.prototype;
+			//var _this = new this();
+			//var _public = this.prototype;
+							
+			var _public = _this;//_instance.prototype;
 			
 			_public.isPreload = function() {
 				return (_loaded==_total)?true:false;
@@ -760,14 +770,20 @@
 			}
 						
 			// constructor
-			var initalize = function(args) { 
-				return _instance;
-			}
+			//var initalize = function(args) { 
+			//	return _instance;
+				//return _this;
+			//}
 						
-			return initalize.bind(_public)();
+			//return initalize.bind(_public)();
 			
-		})());
+		//}).bind(function(){})(arguments[0]));
 		
+			return  _this;
+			
+		
+		}).bind(function(){})(arguments[0]));	
+
 	})();
 
 })();

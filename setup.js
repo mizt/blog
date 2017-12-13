@@ -17,33 +17,46 @@
 	};
 	
 	var setCompletionHandler = function(el,handler) {
+		
+		//console.log("setCompletionHandler")
+		
 		if("onreadystatechange" in el) {
+			
 			el.onreadystatechange = function (e) {
+								
 				if(el.readyState==="loaded"||el.readyState==="complete") return handler(e);
 			};
 		} 
 		else el.onload = handler;
 	};
 	
-	var load = function(path,func) {
+	var loadJS = function(path,func) {
+	
+		var script = document.createElement('script');
+		script.src = path;
+		setCompletionHandler(script,func);
+		document.body.appendChild(script);
 		
-		console.log("load : "+path)
-				
+	}  
+	
+	var load = function(path,func) {
+						
 		if(path.indexOf(".css")==path.length-4) {
 		
 			var link = document.createElement("link");
 			link.setAttribute("href",path);
 			link.setAttribute("rel","stylesheet");
+			
+			//console.log(path)
+			
 			setCompletionHandler(link,func);
 			document.getElementsByTagName("head")[0].appendChild(link);
+			
 		}
 		else if(path.indexOf(".js")==path.length-3) {
 			
-			var script = document.createElement('script');
-			script.src = (path);
-			setCompletionHandler(script,func);
-			document.body.appendChild(script);
-			
+			loadJS(path,func)
+
 		}
 		/*
 		else if(path.indexOf(".json")==path.length-5) {			
@@ -88,34 +101,39 @@
 	};
 	
 	load("./libs/com/getskeleton/normalize.css",function() {
-		//load("./libs/com/getskeleton/skeleton.css",function() {
-			load("./libs/blogger.js",function() {	
+		load("./libs/blogger.js",function() {	
 				
-				var option = (location.href.indexOf("file://")==0)?"":"?t="+Date.now(); 
+			var option = (location.href.indexOf("file://")==0)?"":"?t="+Date.now(); 
+			var external = Query.get("external");
+			
+			window.blogger.add("load",load);
+			window.blogger.set((external)?("https://"+external+"/external/?id="+(Query.get("id")||"index")):("./data/"+(Query.get("id")||"index")+"/"));
 				
-				window.blogger.add("load",load);
-				window.blogger.set("./data/"+(Query.get("id")||"index")+"/");				
-				window.blogger.load(window.blogger.get()+"app.js",function() {
+			loadJS(window.blogger.get()+((external)?"":"app.js"),function() {
+										
+				if(!!window.app.html&&Array.isArray(window.app.html)) {
 					
-					if(!!window.app.html&&Array.isArray(window.app.html)) {						
-						
-						var queue = [];
-						
-						if(window.app.js) queue.push(window.blogger.get()+window.app.js);
-						if(window.app.css) queue.push(window.blogger.get()+window.app.css);
-					
-						var exec = function() {
-																					
-							if(queue.length) window.blogger.load(queue.pop(),exec);			
-							else onRender(window.app.html);	
-														
-						};
-						
-						exec();
+					var queue = [];
+					var base = window.blogger.get();
 											
-					}
-				});				
-			});
-		//});
+					if(base.indexOf("://")!==-1) {
+						if(window.app.js) queue.push(window.app.js);
+						if(window.app.css) queue.push(window.app.css);
+					}	
+					else {
+						if(window.app.js) queue.push(base+window.app.js);
+						if(window.app.css) queue.push(base+window.app.css);
+					}									
+					
+					var exec = function() {
+						if(queue.length) window.blogger.load(queue.pop(),exec);			
+						else onRender(window.app.html);	
+					};
+					
+					exec();							
+				
+				}
+			});			
+		});
 	});
 })();
