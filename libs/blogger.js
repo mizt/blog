@@ -304,7 +304,7 @@
 					for(var n=0; n<range.length; n++) {
 
 						var tmp = text.substring(range[n][0]+1,range[n][1]);
-					 	var comma = tmp.indexOf(",");
+					 	var comma = tmp.lastIndexOf(",");
 										
 					 	if(comma+1!==tmp.length) { // テキストが存在していない場合は無視
 								
