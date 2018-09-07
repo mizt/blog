@@ -111,6 +111,7 @@ p {
   margin-bottom:15px;
   color:#444;
   text-align:justify; 
+  text-align-last:left;
   word-wrap: break-word;
   word-break: break-strict;
 }
