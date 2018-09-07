@@ -9,6 +9,8 @@ window.app = {
 			{"class":"container"},
 			"#「AA展」も「コ本や」も観に行ってはいないけれども",
 			"####※観に行ってはいないので誤った情報の可能性があります。",
+			[{"id":"rt"}],
+			"####※以下の内容につきましてご指摘をいただきました",
 			[{"id":"tweet"}],
 			"「(http://www.2121designsight.jp/program/audio_architecture/exhibits.html,AA展)」に展示されているらしいucnvの《Another Analog》はこんな感じらしい。\n"+
 			"この動画の最後にある青い橋がでてくるシーンの上部の映像（データモッシュ前）に痙攣をしているような箇所が見られる。"+"\n"+
@@ -69,6 +71,32 @@ window.app = {
 			
 			console.log("tweet");
 		*/
+		
+			var rt = document.getElementById("rt");
+			
+			// <p lang="ja" dir="ltr">ひとつ言っておくならば、上部の映像をソースとして下部の映像を生成しているわけではありません <a href="https://t.co/0G1Hn8yiaC">https://t.co/0G1Hn8yiaC</a></p>&mdash; ucnv (@ucnv) <a href="https://twitter.com/ucnv/status/1038092699759341569?ref_src=twsrc%5Etfw">2018年9月7日</a>
+			
+			
+			crel(rt,
+				crel("blockquote",{"class":"twitter-tweet","data-lang":"ja","style":"margin-bottom:35px;"},	
+					crel("p",{"lang":"ja","dir":"ltr","style":"font-size:12px;color:#777;"},			
+						crel("span","ひとつ言っておくならば",crel("span",{class:"punctuation"},"、"),"上部の映像をソースとして下部の映像を生成しているわけではありません"),
+						crel("br"),
+						crel("span",{class:"en"},"— ucnv "),
+						crel("br"),
+						crel("a",{"href":"https://twitter.com/ucnv/status/1038092699759341569"},
+							crel("span",{class:"en"},"8:52 - 2018"),
+							crel("span","年"),
+							crel("span",{class:"en"},"9"),
+							crel("span","月"),
+							crel("span",{class:"en"},"7"),
+							crel("span","日")
+						)
+					)
+				)
+			);
+
+		
 			var tweet = document.getElementById("tweet");
 			
 			// class:"en"
@@ -89,6 +117,7 @@ window.app = {
 						crel("a",{"href":"https://t.co/skMSpE5J67"},
 							crel("span",{class:"en"},"pic.twitter.com/skMSpE5J67")
 						),
+						crel("br"),
 						crel("span",{class:"en"},"— Matsuura Tomoya "),
 						crel("span","松浦知也"),
 						crel("br"),
@@ -148,12 +177,9 @@ window.app = {
 		var draw;
 			
 		loadJS("./data/rdm05/libs.js",function() {
-			
-				var checker = setInterval(function() {
-					
-					if(window["Module"]) {
-						clearInterval(checker);
-						
+			var checker = setInterval(function() {					
+				if(window["Module"]) {
+					clearInterval(checker);
 						var size = (320*176)<<2;
 						ptr = Module._malloc(size);
 						buf = new Uint8Array(Module.HEAPU8.buffer,ptr,size);
@@ -187,12 +213,8 @@ window.app = {
 						window.addEventListener("mouseup",off,false);			
 						document.addEventListener("touchend",off,false);
 						document.addEventListener("touchcancel",off,false);
-
-						
-						
 					}
 				});
-				
 		});
 		
 		var process = function() {
