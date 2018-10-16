@@ -197,6 +197,7 @@
 				var matches = [];
 
 				var match;
+				ASCII.lastIndex = 0;
 				while((match = ASCII.exec(text))!=null) {		
 					matches.push({
 						index:match.index,length:match[0].length,match:match[0]
@@ -242,6 +243,9 @@
 				var matches = [];
 				
 				var match;
+				
+				regex.lastIndex = 0;
+
 				while((match = regex.exec(text))!=null) {		
 					matches.push({
 						index:match.index,match:match[0]
@@ -492,6 +496,10 @@
 			
 			var _span = function(tmp,str) {
 				
+				
+				ASCII.lastIndex = 0;
+
+
 				if(str=="、"||str=="。") {
 					//tmp.push(crel("span",{style:"margin:0;padding:0"},""));
 					tmp.push(crel("span",{class:"punctuation"},str));
