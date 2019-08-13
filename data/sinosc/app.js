@@ -16,7 +16,7 @@
 				"ここでのfreqinはSinOsc.arで指定したfreqの値（例えば440）になり、\nunit->m_cpstoincはサンプリングレートが48000の場合は",
 				"`8192 * (1./48000.) * 65536;`",
 				"で計算された結果の約11184.8106667となります。",
-				"phaseincはdoubleからint32にダウンキャストされておりint32の値がとる範囲は-2147483648~2147483647なので（clangでコンパイルした場合には）freqinの値が約192000以上だとphaseincの値が2147483647を超え、常に-2147483648となります。",
+				"phaseincはdoubleからint32にダウンキャストされておりint32の値がとる範囲は-2147483648~2147483647なのでfreqinの値が約192000以上だとphaseincの値が2147483647を超え、常に-2147483648となります。（macOSのSuperCollider 3.10.2で確認）",
 				"FM合成でphaseincが2147483647を超える以下のコードをSuperColliderで実行すると",
 				"`(\nSynthDef(\\fm,{\n\tvar carrier = 168.0;\n\tvar freq = carrier*325.0;\n\tvar mod = EnvGen.kr(\n\t\tEnv([1,0.24,0.68,0],[0.204,(0.555-0.204),(1-0.555)]),\n\t\tlevelScale:12.0,\n\t\ttimeScale:0.5,\n\t\tdoneAction:Done.none\n\t);\n\tvar amp = EnvGen.kr(\n\t\tEnv([1,0.2,0],[0.212,(1-0.212)]),\n\t\ttimeScale:0.5,\n\t\tdoneAction:Done.freeSelf\n\t);\n\tvar out = SinOsc.ar(carrier+(SinOsc.ar(freq)*freq*mod))*amp;\n\tOut.ar(0,[out,out]);\n}).add;\n)\n\nSynth(\\fm)`",
 				["img",{"style":"width:100%;height:142px;","src":base+"fm1.png"}],
