@@ -9,7 +9,7 @@ window.app = {
 			{"class":"container"},
 			"#rdm03.js",
 			">グリッチとは、意図されておらず予測されていなかった状態が再生装置によって再生されることである。",
-			">- (http://ucnv.org/turpentine/assets/turpentine.pdf,ucnv, turpentine)",
+			">- (https://ucnv.org/turpentine/turpentine.pdf, turpentine)",
 			"rdm03は正しくデータモッシュをする。",
 			"rdm03.jpg",
 			[
