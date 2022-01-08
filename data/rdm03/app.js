@@ -52,7 +52,7 @@ window.app = {
 			"一般的にデータモッシュさせるには動画からキーフレームを削除して複合させる。キーフレームが欠損したまま複合するので正しい動画が表示されず壊れる。\nrdm03ではリアルタイムであることを考慮してキーフレームの更新タイミングで、一つ前のフレームを挿入している。それにより前述した欠損がなくなり滑らかなフレームの動きになっている。\nまた今回のデモでは復元するのに用いる一つ前の画像は、前フレームでディスプレイに表示されているものを採用している。（実際に符号化に使うものは正常な一つ前のフレーム）\nOC_MODE_GOLDEN_NOMV（動きベクトルが無いキーフレーム）を参照する場合にも処理を無視するなどの処理を加えている。\nrdm03は圧縮されたファイル／再生装置ではないので、動きベクトルの探索の種類、複合する方法の変更などを外部パラメータからフレームごとにリアルタイムに変更する等も可能となる。",
 			"###参考文献",
 			"(https://www.theora.org/,https://www.theora.org/)\n"+
-			"(https://people.xiph.org/~tterribe/pubs/lca2008/anatomy.pdf,Anatomy of a Video Codec)\n"+
+			"(http://mirror.linux.org.au/pub/linux.conf.au/2008/slides/171-anatomy.pdf,Anatomy of a Video Codec)\n"+
 			"(http://home.catv.ne.jp/dd/pub/book/mpeg.html,MPEG Video 技術)\n"+
 			"(https://www.marumo.ne.jp/db2005_1.htm,動き検索あれこれ)\n"+
 			"(https://www.amazon.co.jp/%E6%9C%80%E6%96%B0MPEG%E6%95%99%E7%A7%91%E6%9B%B8-%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%9B%B3%E8%A7%A3%E5%BC%8F-%E3%83%9E%E3%83%AB%E3%83%81%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E9%80%9A%E4%BF%A1%E7%A0%94%E7%A9%B6%E4%BC%9A/dp/4756102476/ref=sr_1_3?s=books&ie=UTF8&qid=1466478443&sr=1-3&keywords=mpeg,MPEG教科書(ポイント図解式))"
